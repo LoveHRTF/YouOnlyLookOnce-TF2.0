@@ -113,10 +113,48 @@ class Model(tf.keras.Model):
         return output
 
 
-    def loss(self, logits, labels):
+    def loss(self, nn_output, labels, anchors, num_class, iou_threshold):
+        """
+        Return: Tensor of shape [1,]
+        """
         # TODO: Add loss function
-        
-        pass
+
+        classificationLoss  = self.classificationLoss()
+        localizationLoss    = self.localizationLoss()
+        confidenceLoss      = self.confidenceLoss()
+
+        loss = classificationLoss + localizationLoss + confidenceLoss
+        return loss
+
+
+    def classificationLoss(self):
+        """
+        Return: Tensor of shape [1,]
+        """
+        # TODO: Classification Loss
+
+        loss = None
+        return loss
+
+
+    def localizationLoss(self):
+        """
+        Return: Tensor of shape [1,]
+        """
+        # TODO: Localization Loss
+
+        loss = None
+        return loss
+
+    def confidenceLoss(self):
+        """
+        Return: Tensor of shape [1,]
+        """
+        # TODO: Confidence Loss
+
+        loss = None
+        return loss
+
 
     def accuracy(self, logits, labels):
         # TODO: Add evaluation of accuracy
