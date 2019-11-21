@@ -1,0 +1,10 @@
+
+.DS_Store
+dat/2007_train.txt
+dat/2007_val.txt
+dat/2007_test.txt
+dat/2012_train.txt
+dat/2012_val.txt
+dat/train.txt
+dat/VOCdevkit/
+*.tar
