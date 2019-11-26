@@ -9,6 +9,7 @@ import tensorflow.keras.layers.MaxPool2D as MaxPool2D
 import tensorflow.keras.layers.Dense as Dense
 import tensorflow.keras.layers.Flatten as Flatten
 import tensorflow.keras.layers.LeakyReLU as LeakyReLU
+import config as cfg
 
 
 class Model(tf.keras.Model):
@@ -18,7 +19,7 @@ class Model(tf.keras.Model):
         super(Model, self).__init__()
         # Hyper Parameters
         # Update Parameters and optimizer
-        self.learning_rate = 1e-4
+        self.learning_rate = 1e-3
         self.optimizer.Adam(self.learning_rate)
         self.LeakyReLU = LeakyReLU(alpha=0.1)
 
@@ -124,7 +125,7 @@ class Model(tf.keras.Model):
 
         return tf.reshape(output, [-1, 7, 7, 30])                                   # Reshape to [batch_size, 7, 7, 30]
 
-    def loss(self, nn_output, labels, anchors, num_class, iou_threshold):
+    def loss(self, logits, labels):
         """
         Return: Tensor of shape [1,]
         """
@@ -134,34 +135,44 @@ class Model(tf.keras.Model):
         localizationLoss    = self.localizationLoss()
         confidenceLoss      = self.confidenceLoss()
 
-        loss = classificationLoss + localizationLoss + confidenceLoss
+        loss = localizationLoss(logits, labels) + confidenceLoss(logits, labels) + classificationLoss(logits, labels)
         return loss
 
-    def classificationloss(self):
+    def localizationloss(self, logits, labels):
         """
-        Return: Tensor of shape [1,]
-        """
-        # TODO: Classification Loss
-
-        loss = None
-        return loss
-
-    def localizationloss(self):
-        """
+        nn_output:  (bs, 7, 7, 30)
+        labels:     (bs, 7, 7, 30)
         Return: Tensor of shape [1,]
         """
         # TODO: Localization Loss
-
-        loss = None
+        coord_scale = cfg.common_params['coord_scale']
+        xy      = logits[:, :, :, [0,1,5,6]]
+        xy_hat  = labels[:, :, :, [0,1,5,6]]
+        wh      = tf.math.sqrt(logits[:, :, :, [2,3,7,8]])
+        wh_hat  = tf.math.sqrt(labels[:, :, :, [2,3,7,8]])
+        loss = coord_scale * tf.reduce_sum(tf.math.square(xy - xy_hat))
         return loss
 
-    def confidenceloss(self):
+    def confidenceloss(self, logits, labels):
         """
         Return: Tensor of shape [1,]
         """
         # TODO: Confidence Loss
+        noobject_scale = cfg.common_params['noobject_scale']    # not used
+        c       = logits[:, :, :, [4,9]]
+        c_hat   = labels[:, :, :, [4,9]]
+        one = (c_hat + 1.) / 2.   # confidence -> noobject scale (1->1, 0->0.5)
+        loss = tf.multiply(tf.square(c - c_hat), one)
+        return loss
 
-        loss = None
+    def classificationloss(self, logits, labels):
+        """
+        Return: Tensor of shape [1,]
+        """
+        # TODO: Classification Loss
+        p       = logits[:, :, :, 10:]
+        p_hat   = labels[:, :, :, 10:]
+        loss = tf.reduce_sum(tf.math.square(p - p_hat))
         return loss
 
     def accuracy(self, logits, labels):
