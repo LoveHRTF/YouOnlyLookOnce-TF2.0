@@ -67,7 +67,7 @@ class Model(tf.keras.Model):
 
         # Fully Connected Layers
         self.dense_1        = Dense(4096, activation=self.LeakyReLU)
-        self.dense_2        = Dense([7, 7, 30], activation=None)                    # Linear activation in call
+        self.dense_2        = Dense(1470, activation=None)                    # Linear activation in call
 
         # Dropout Layers
         self.dropout_1      = tf.keras.layers.Dropout(0.5)                          # Drop out to prevent overfit
@@ -122,7 +122,7 @@ class Model(tf.keras.Model):
 
         output          = tf.keras.activation.linear(dense_2_out)                   # Apply linear activation layer
 
-        return output
+        return tf.reshape(output, [-1, 7, 7, 30])                                   # Reshape to [batch_size, 7, 7, 30]
 
     def loss(self, nn_output, labels, anchors, num_class, iou_threshold):
         """
