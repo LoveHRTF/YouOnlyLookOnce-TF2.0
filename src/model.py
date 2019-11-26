@@ -7,6 +7,7 @@ import tensorflow as tf
 import tensorflow.keras.layers.Conv2D as Conv2D
 import tensorflow.keras.layers.MaxPool2D as MaxPool2D
 import tensorflow.keras.layers.Dense as Dense
+import tensorflow.keras.layers.LeakyReLU as LeakyReLU
 
 
 class Model(tf.keras.Model):
@@ -18,38 +19,40 @@ class Model(tf.keras.Model):
         # Update Parameters and optimizer
         self.learning_rate = 1e-4
         self.optimizer.Adam(self.learning_rate)
+        self.LeakyReLU = LeakyReLU(alpha=0.1)
 
         # Trainable Parameters
         # Conv2D Layers
-        self.conv2d_1       = Conv2D(filters=64, kernel_size=[7, 7], strides=[2, 2], padding='same', activation='relu')
 
-        self.conv2d_2       = Conv2D(filters=192, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
+        self.conv2d_1       = Conv2D(filters=64, kernel_size=[7, 7], strides=[2, 2], padding='same', activation=self.LeakyReLU)
 
-        self.conv2d_3_1     = Conv2D(filters=128, kernel_size=[1, 1], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_3_2     = Conv2D(filters=256, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_3_3     = Conv2D(filters=256, kernel_size=[1, 1], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_3_4     = Conv2D(filters=512, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
+        self.conv2d_2       = Conv2D(filters=192, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
 
-        self.conv2d_4_1_1   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_4_2_1   = Conv2D(filters=256, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_4_1_2   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_4_2_2   = Conv2D(filters=256, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_4_1_3   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_4_2_3   = Conv2D(filters=256, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_4_1_4   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_4_2_4   = Conv2D(filters=256, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_4_3     = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_4_4     = Conv2D(filters=1024, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
+        self.conv2d_3_1     = Conv2D(filters=128, kernel_size=[1, 1], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_3_2     = Conv2D(filters=256, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_3_3     = Conv2D(filters=256, kernel_size=[1, 1], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_3_4     = Conv2D(filters=512, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
 
-        self.conv2d_5_1_1   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_5_2_1   = Conv2D(filters=1024, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_5_1_2   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_5_2_2   = Conv2D(filters=1024, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_5_3     = Conv2D(filters=1024, kernel_size=[3, 3], strides=[1, 1], padding='same', activation='relu')
-        self.conv2d_5_4     = Conv2D(filters=1024, kernel_size=[3, 3], strides=[2, 2], padding='same', activation='relu')
+        self.conv2d_4_1_1   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_4_2_1   = Conv2D(filters=256, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_4_1_2   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_4_2_2   = Conv2D(filters=256, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_4_1_3   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_4_2_3   = Conv2D(filters=256, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_4_1_4   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_4_2_4   = Conv2D(filters=256, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_4_3     = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_4_4     = Conv2D(filters=1024, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
 
-        self.conv2d_6_1     = Conv2D(filters=1024, kernel_size=[3, 3], strides=[3, 3], padding='same', activation=None)
-        self.conv2d_6_2     = Conv2D(filters=1024, kernel_size=[3, 3], strides=[3, 3], padding='same', activation=None)
+        self.conv2d_5_1_1   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_5_2_1   = Conv2D(filters=1024, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_5_1_2   = Conv2D(filters=512, kernel_size=[1, 1], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_5_2_2   = Conv2D(filters=1024, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_5_3     = Conv2D(filters=1024, kernel_size=[3, 3], strides=[1, 1], padding='same', activation=self.LeakyReLU)
+        self.conv2d_5_4     = Conv2D(filters=1024, kernel_size=[3, 3], strides=[2, 2], padding='same', activation=self.LeakyReLU)
+
+        self.conv2d_6_1     = Conv2D(filters=1024, kernel_size=[3, 3], strides=[3, 3], padding='same', activation=self.LeakyReLU)
+        self.conv2d_6_2     = Conv2D(filters=1024, kernel_size=[3, 3], strides=[3, 3], padding='same', activation=self.LeakyReLU)
 
         # Max Pooling Layers
         self.maxPool_1      = MaxPool2D(pool_size=[2, 2], strides=[2, 2], padding='same')
@@ -59,7 +62,7 @@ class Model(tf.keras.Model):
         self.maxPool_5      = MaxPool2D(pool_size=[2, 2], strides=[2, 2], padding='same')
 
         # Fully Connected Layers
-        self.dense_1        = Dense(4096, activation='relu')
+        self.dense_1        = Dense(4096, activation=self.LeakyReLU)
         self.dense_2        = Dense([7, 7, 30], activation=None)                    # Linear activation in call
 
         # Dropout Layers
