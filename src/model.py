@@ -4,13 +4,12 @@ This model is the complete Yolo model for performing detection task
 """
 
 import tensorflow as tf
-import tensorflow.keras.layers.Conv2D as Conv2D
-import tensorflow.keras.layers.MaxPool2D as MaxPool2D
-import tensorflow.keras.layers.Dense as Dense
-import tensorflow.keras.layers.Flatten as Flatten
-import tensorflow.keras.layers.LeakyReLU as LeakyReLU
+from tensorflow.keras.layers import Conv2D
+from tensorflow.keras.layers import MaxPool2D
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Flatten
+from tensorflow.keras.layers import LeakyReLU
 import config as cfg
-
 
 class Model(tf.keras.Model):
 

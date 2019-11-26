@@ -1,10 +1,5 @@
 import tensorflow as tf
-import numpy as np
-from src import dataset
-from src import model
-from src import train
-from src import test
-from src import config
+import dataset, model, train, test, config
 
 def main():
     #TODO: Main function
