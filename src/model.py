@@ -7,6 +7,7 @@ import tensorflow as tf
 import tensorflow.keras.layers.Conv2D as Conv2D
 import tensorflow.keras.layers.MaxPool2D as MaxPool2D
 import tensorflow.keras.layers.Dense as Dense
+import tensorflow.keras.layers.Flatten as Flatten
 import tensorflow.keras.layers.LeakyReLU as LeakyReLU
 
 
@@ -61,6 +62,9 @@ class Model(tf.keras.Model):
         self.maxPool_4      = MaxPool2D(pool_size=[2, 2], strides=[2, 2], padding='same')
         self.maxPool_5      = MaxPool2D(pool_size=[2, 2], strides=[2, 2], padding='same')
 
+        # Flatten Layer
+        self.flat_1         = Flatten()
+
         # Fully Connected Layers
         self.dense_1        = Dense(4096, activation=self.LeakyReLU)
         self.dense_2        = Dense([7, 7, 30], activation=None)                    # Linear activation in call
@@ -109,7 +113,9 @@ class Model(tf.keras.Model):
         conv2d_6_out    = self.conv2d_6_1(conv2d_5_out)                             # Conv2d Block 6
         conv2d_6_out    = self.conv2d_6_2(conv2d_6_out)
 
-        dense_1_out     = self.dense_1(conv2d_6_out)                                # Dense Layer 1, (4096, 0)
+        flatten_out     = self.flat_1(conv2d_6_out)                                 # Flatten layer
+
+        dense_1_out     = self.dense_1(flatten_out)                                 # Dense Layer 1, (4096, 0)
         dense_1_out     = self.dropout_1(dense_1_out)
 
         dense_2_out     = self.dense_2(dense_1_out)                                 # Dense Layer 2, (7, 7, 30)
