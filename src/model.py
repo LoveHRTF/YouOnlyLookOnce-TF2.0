@@ -67,7 +67,7 @@ class Model(tf.keras.Model):
 
         # Fully Connected Layers
         self.dense_1        = Dense(4096, activation=self.LeakyReLU)
-        self.dense_2        = Dense(1470, activation=None)                    # Linear activation in call
+        self.dense_2        = Dense(1470, activation='linear')                      # Linear activation in call
 
         # Dropout Layers
         self.dropout_1      = tf.keras.layers.Dropout(0.5)                          # Drop out to prevent overfit
@@ -120,7 +120,8 @@ class Model(tf.keras.Model):
 
         dense_2_out     = self.dense_2(dense_1_out)                                 # Dense Layer 2, (7, 7, 30)
 
-        output          = tf.keras.activation.linear(dense_2_out)                   # Apply linear activation layer
+        # output          = tf.keras.activations.linear(dense_2_out)                  # Apply linear activation layer
+        output          = dense_2_out
 
         return tf.reshape(output, [-1, 7, 7, 30])                                   # Reshape to [batch_size, 7, 7, 30]
 
@@ -129,12 +130,10 @@ class Model(tf.keras.Model):
         Return: Tensor of shape [1,]
         """
         # TODO: Add loss function
-
-        classificationLoss  = self.classificationLoss()
-        localizationLoss    = self.localizationLoss()
-        confidenceLoss      = self.confidenceLoss()
-
-        loss = localizationLoss(logits, labels) + confidenceLoss(logits, labels) + classificationLoss(logits, labels)
+        loss =  self.localizationloss(logits, labels) + \
+                self.confidenceloss(logits, labels) + \
+                self.classificationloss(logits, labels)
+                
         return loss
 
     def localizationloss(self, logits, labels):

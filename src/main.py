@@ -1,5 +1,14 @@
 import tensorflow as tf
-import dataset, model, train, test, config
+import dataset, model, train, test
+import config as cfg
+
+""" Test """
+m = model.Model()
+d = dataset.Dataset(cfg.common_params, cfg.dataset_params['train_file'])
+img, label = d.batch()
+jj = m(img)
+jb = m.loss(jj, label)
+
 
 def main():
     #TODO: Main function
