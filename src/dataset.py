@@ -247,7 +247,7 @@ class Dataset(object):
             self.record_point = 0
 
         images, targets = [], []
-        idxs = self.shuffle_idx[self.record_point * self.batch_size:(self.record_point + 1) * self.batch_size]
+        idxs = self.shuffle_idx[self.record_point * self.batch_size: (self.record_point + 1) * self.batch_size]
         for idx in idxs:
             image, target = self.parse_data(idx)
             images.append(image)
@@ -265,5 +265,5 @@ if __name__ == '__main__':
     dataset = Dataset(cfg.common_params, cfg.dataset_params['train_file'])
     for i in range(100):
         images, targets = dataset.batch()
-        print(targets[0, :, :, 1])
+        print(targets[0, :, :, 0:5])
         print(images.shape, targets.shape)
