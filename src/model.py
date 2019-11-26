@@ -20,7 +20,7 @@ class Model(tf.keras.Model):
         # Hyper Parameters
         # Update Parameters and optimizer
         self.learning_rate = 1e-3
-        self.optimizer.Adam(self.learning_rate)
+        self.optimizer = tf.keras.optimizers.Adam(self.learning_rate)
         self.LeakyReLU = LeakyReLU(alpha=0.1)
 
         # Trainable Parameters
