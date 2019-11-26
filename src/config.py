@@ -12,6 +12,6 @@ common_params = {
 }
 
 dataset_params = {
-    'train_file': '../data/pasvoc_0712.txt',
-    'test_file': '../data/pasvoc_0712_test.txt'
+    'train_file': '../data/train.txt',
+    'test_file': '../data/test.txt'
 }
