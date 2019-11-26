@@ -255,7 +255,7 @@ class Dataset(object):
         targets = np.asarray(targets, dtype=np.float32)
 
         self.record_point += 1
-        return images, targets, self.record_point, self.num_batch_per_epoch
+        return images, targets
 
 
 if __name__ == '__main__':
