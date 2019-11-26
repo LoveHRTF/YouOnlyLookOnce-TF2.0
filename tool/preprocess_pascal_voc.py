@@ -14,7 +14,7 @@ classes_to_id = dict(zip(classes_name, range(len(classes_name))))
 
 ROOT_PATH = os.path.expanduser("~")
 YOLO_PATH = os.path.abspath("../")
-VOC_PATH = os.path.join(ROOT_PATH, 'data', "VOCdevkit")
+VOC_PATH = os.path.join(YOLO_PATH, 'data', "VOCdevkit")
 VOC_PATH_2007 = os.path.join(VOC_PATH, "VOC2007")
 VOC_PATH_2012 = os.path.join(VOC_PATH, "VOC2012")
 DATA_PATH = os.path.join(YOLO_PATH, "data")
