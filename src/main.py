@@ -31,7 +31,7 @@ def main():
         else if epoch > 120:            # next 30 epochs, lr = 1e-4
             model.learning_rate = 1e-4
         
-        train(model, inputs, labels)
+        train(model, dataset)
 
 
     # Test
