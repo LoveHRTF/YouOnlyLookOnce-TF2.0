@@ -1,36 +1,34 @@
+# Packages
 import tensorflow as tf
-import dataset, model, train, test
+
+# Class and functions
+# import dataset, model, train, test
+from train import train
+from test import test
+from dataset import Dataset
+from model import Model
+
+# Configration file
 import config as cfg
 
-""" Test """
-m = model.Model()
-d = dataset.Dataset(cfg.common_params, cfg.dataset_params['train_file'])
-img, label = d.batch()
-jj = m(img)
-jb = m.loss(jj, label)
-
+# """ Test """
+# m = Model()
+# d = Dataset(cfg.common_params, cfg.dataset_params['train_file'])
+# img, label, _, _ = d.batch()
+# jj = m(img)
+# jb = m.loss(jj, label)
+# """ End Test """
 
 def main():
     #TODO: Main function
     # Preprocess 
     dataset = Dataset(cfg.common_params, cfg.dataset_params['train_file'])
-    
-
     #
     model = Model()
 
     # Train
     for epoch in range(150):
-        # adjust lr, lr = 1e-3 for first 5 epochs
-        if epoch > 5:                   # next 10 epochs, slowly raise lr from 1e-3 to 1e-2
-            model.learning_rate += 1e-3
-        else if epoch > 15:             # next 75 epochs, lr = 1e-2
-            model.learning_rate = 1e-2
-        else if epoch > 90:             # next 30 epochs, lr = 1e-3
-            model.learning_rate = 1e-3
-        else if epoch > 120:            # next 30 epochs, lr = 1e-4
-            model.learning_rate = 1e-4
-        
+        print("============ Epoch ", epoch, "============")
         train(model, dataset)
 
 
@@ -40,5 +38,5 @@ def main():
 
 
 if __name__ == "__main__":
-    pass
+    main()
 
