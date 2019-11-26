@@ -162,7 +162,7 @@ class Model(tf.keras.Model):
         c       = logits[:, :, :, [4,9]]
         c_hat   = labels[:, :, :, [4,9]]
         one = (c_hat + 1.) / 2.   # confidence -> noobject scale (1->1, 0->0.5)
-        loss = tf.multiply(tf.square(c - c_hat), one)
+        loss = tf.reduce_sum(tf.multiply(tf.square(c - c_hat), one))
         return loss
 
     def classificationloss(self, logits, labels):
