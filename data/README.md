@@ -21,7 +21,4 @@
 
 `python voc_label.py`
 
-#### Cat all files into one list
-`cat 2007_* 2012_train.txt > train.txt`
-
 * Instructions from [here](https://pjreddie.com/darknet/yolov1/)
