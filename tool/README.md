@@ -12,5 +12,5 @@ tar xf VOCtrainval_06-Nov-2007.tar
 tar xf VOCtest_06-Nov-2007.tar 
 ```
 
-2. Run *preprocess_pascal_voc.py* to extract labels and bounding boxes, which will be stored in 
+2. Run `preprocess_pascal_voc.py` to extract labels and bounding boxes, which will be stored in 
 `YouOnlyLookOnce-TF2.0/data/`
