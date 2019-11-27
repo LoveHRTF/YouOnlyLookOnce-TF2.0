@@ -1,4 +1,5 @@
 # Packages
+import argparse
 import tensorflow as tf
 
 # Class and functions
@@ -10,6 +11,14 @@ from model import Model
 
 # Configration file
 import config as cfg
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--num-epochs', type=int, default=100)
+parser.add_argument('--mode', type=str, default='train', help='Can be "train" or "test"')
+parser.add_argument('--restore', action='store_true',
+                    help='Use this flag if you want to resuming training from the latest-saved checkpoint')
+args = parser.parse_args()
 
 # """ Test """
 # m = Model()
@@ -29,13 +38,13 @@ def main():
     manager = tf.train.CheckpointManager(checkpoint, cfg.path_params['checkpoints'], max_to_keep=10)
 
     # Load checkpoint
-    is_restore = False
-    if is_restore:
+    if args.restore or args.mode == 'test':
+        # restores the latest checkpoint using from the manager
         checkpoint.restore(manager.latest_checkpoint)
         print("Load checkpoint : ", manager.latest_checkpoint)
 
     # Train
-    for epoch in range(150):
+    for epoch in range(args.num_epochs):
         print("============ Epoch ", epoch, "============")
         train(model, dataset)
 
@@ -46,8 +55,5 @@ def main():
     # TODO: Test
 
 
-
-
 if __name__ == "__main__":
     main()
-
