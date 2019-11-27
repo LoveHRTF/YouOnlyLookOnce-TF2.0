@@ -6,6 +6,9 @@ def train(model, dataset):
     Train model for one epoch. 
     '''
     
+    loss_sum = 0
+    loss_avg = 0
+
     for i in range(dataset.num_batch_per_epoch):
 
         images, labels = dataset.batch()
@@ -18,8 +21,10 @@ def train(model, dataset):
         # Apply gradient
         gradients = tape.gradient(loss, model.trainable_variables)
         model.optimizer.apply_gradients(zip(gradients, model.trainable_variables))
-        if i % 1 == 0:
-            print("Batch ", dataset.record_point, "/", dataset.num_batch_per_epoch, " | Loss ", loss)
 
-    
+        loss_sum += loss
+        loss_avg = loss_sum / (i+1)
+        if i % 5 == 0:
+            print("Batch ", dataset.record_point, "/", dataset.num_batch_per_epoch, " | avg_loss ", float(loss_avg))
+
     pass
