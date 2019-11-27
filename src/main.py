@@ -35,7 +35,7 @@ def main():
         print("Load checkpoint : ", manager.latest_checkpoint)
 
     # Train
-    for epoch in range(1):
+    for epoch in range(150):
         print("============ Epoch ", epoch, "============")
         train(model, dataset)
 
