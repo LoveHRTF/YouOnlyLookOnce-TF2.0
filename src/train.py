@@ -10,13 +10,14 @@ def train(model, dataset):
 
         images, labels = dataset.batch()
         
+        # Gradient tape
         with tf.GradientTape() as tape:
             predictions = model.call(images)
             loss = model.loss(predictions, labels)
         
+        # Apply gradient
         gradients = tape.gradient(loss, model.trainable_variables)
         model.optimizer.apply_gradients(zip(gradients, model.trainable_variables))
-
         if i % 1 == 0:
             print("Batch ", dataset.record_point, "/", dataset.num_batch_per_epoch, " | Loss ", loss)
 

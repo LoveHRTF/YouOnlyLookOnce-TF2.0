@@ -18,7 +18,8 @@ class Model(tf.keras.Model):
         super(Model, self).__init__()
         # Hyper Parameters
         # Update Parameters and optimizer
-        self.learning_rate = 1e-6
+        self.batch_size = cfg.common_params['batch_size']
+        self.learning_rate = 1e-3
         self.optimizer = tf.keras.optimizers.Adam(self.learning_rate)
         self.LeakyReLU = LeakyReLU(alpha=0.1)
 
@@ -126,7 +127,7 @@ class Model(tf.keras.Model):
 
     def loss(self, logits, labels):
         """
-        Return: Tensor of shape [1,]
+        Return: Average loss. Tensor of shape [1,]
         """
         # TODO: Add loss function
 
@@ -134,13 +135,13 @@ class Model(tf.keras.Model):
                 self.confidenceloss(logits, labels) + \
                 self.classificationloss(logits, labels)
 
-        return loss
+        return loss / self.batch_size
 
     def localizationloss(self, logits, labels):
         """
         nn_output:  (bs, 7, 7, 30)
         labels:     (bs, 7, 7, 30)
-        Return: Tensor of shape [1,]
+        Return: xy loss and wh loss. Tensor of shape [1,]
         """
         # TODO: Localization Loss
         coord_scale = cfg.common_params['coord_scale']
@@ -155,7 +156,7 @@ class Model(tf.keras.Model):
 
     def confidenceloss(self, logits, labels):
         """
-        Return: Tensor of shape [1,]
+        Return: Box confidence loss. Tensor of shape [1,]
         """
         # TODO: Confidence Loss
         # noobject_scale = cfg.common_params['noobject_scale']    # not used
@@ -168,7 +169,7 @@ class Model(tf.keras.Model):
 
     def classificationloss(self, logits, labels):
         """
-        Return: Tensor of shape [1,]
+        Return: Class prob loss. Tensor of shape [1,]
         """
         # TODO: Classification Loss
         idx     = tf.range(start=10, limit=30, delta=1)

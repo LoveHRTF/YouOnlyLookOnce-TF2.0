@@ -9,6 +9,8 @@ data/2012_val.txt
 data/train.txt
 data/test.txt
 data/VOCdevkit/
+checkpoints/checkpoint
+checkpoints/ckpt*
 *.tar
 
 __pycache__

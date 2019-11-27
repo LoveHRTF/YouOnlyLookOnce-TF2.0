@@ -15,3 +15,7 @@ dataset_params = {
     'train_file': '../data/train.txt',
     'test_file': '../data/test.txt'
 }
+
+path_params = {
+    'checkpoints': '../checkpoints/'
+}
