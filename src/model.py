@@ -19,7 +19,7 @@ class Model(tf.keras.Model):
         # Hyper Parameters
         # Update Parameters and optimizer
         self.batch_size = cfg.common_params['batch_size']
-        self.learning_rate = 1e-3
+        self.learning_rate = 1e-6
         self.optimizer = tf.keras.optimizers.Adam(self.learning_rate)
         self.LeakyReLU = LeakyReLU(alpha=0.1)
 
