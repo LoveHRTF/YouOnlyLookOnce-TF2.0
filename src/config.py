@@ -1,6 +1,6 @@
 common_params = {
     'image_size': 448,
-    'batch_size': 64,
+    'batch_size': 128,
     'output_size': 7,
     'num_steps': 450000,
     'boxes_per_cell': 2,
