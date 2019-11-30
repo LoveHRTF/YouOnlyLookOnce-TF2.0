@@ -5,6 +5,46 @@ This is the final project for CSCI-1470 Deep Learning @ Brown University
 
 Currently under construction 
 
+## Main File Structure
+### Code
+```
+~\YouOnlyLookOnce-TF2.0
+
+  --src-|
+        |-config.py
+        |-main.py
+        |-model.py
+        |-dataset.py
+        |-train.py
+        |-test.py
+        \-visualize.py
+        
+  --data-|
+         |-voc_label.py
+         |-train.txt
+         |-test.txt
+         \-VOCdevkit-|
+                     |-VOC2007
+                     \-VOC2012
+                     
+  --tool-|
+         \-preprocess_pascal_voc.py
+```
+
+### Model and Temporary Files
+```
+  --checkpoints-|
+                |-checkpoint
+                |-ckpt-xx.index
+                |-ckpt-xx.data-00000-of-00002
+                \-ckpt-xx.data-00001-of-00002
+  
+  --tmp-|
+        \- TBD
+  
+  --doc-|
+        \- TBD
+```
 
 ## Data Gather and Pre-process (PASCAL VOC 2012 and 2007)
 
