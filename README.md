@@ -35,7 +35,7 @@ Currently under construction
 ```
   --checkpoints-|
                 |-checkpoint
-                |-ckpt-XX.index
+                |-ckpt-xx.index
                 |-ckpt-xx.data-00000-of-00002
                 \-ckpt-xx.data-00001-of-00002
   
