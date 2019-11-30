@@ -1,19 +1,17 @@
 # Packages
 import argparse
 import tensorflow as tf
-
 # Class and functions
-# import dataset, model, train, test
 from train import train
 from test import test
 from dataset import Dataset
 from model import Model
-
 # Configration file
 import config as cfg
 
+# Input arguments
 parser = argparse.ArgumentParser()
-parser.add_argument('--num-epochs', type=int, default=200)
+parser.add_argument('--num-epochs', type=int, default=400)
 parser.add_argument('--mode', type=str, default='train', help='Can be "train" or "test"')
 parser.add_argument('--restore', action='store_true',
                     help='Use this flag if you want to resuming training from the latest-saved checkpoint')
@@ -37,7 +35,7 @@ def main():
         for epoch in range(args.num_epochs):                                            # Train
             print("============ Epoch ",epoch, "============")
             train(model, train_data)
-            if epoch % 10 == 0:                                                         # Save checkpoint
+            if epoch % 20 == 0:                                                         # Save checkpoint
                 manager.save()
 
     elif args.mode == 'test':
