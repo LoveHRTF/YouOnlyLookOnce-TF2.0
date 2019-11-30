@@ -59,7 +59,7 @@ Currently under construction
 * cd to /YouOnlyLookOnce-TF2.0/src/
 
 * Run `python main.py` to train from scratch, model checkpoints will be stored in /YouOnlyLookOnce-TF2.0/checkpoints/
-* Run `python main.py restore` to resume training from the latest saved checkpont
+* Run `python main.py restore` to resume training from the latest saved checkpoint
 
 ## Test
 
