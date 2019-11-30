@@ -6,8 +6,10 @@ This is the final project for CSCI-1470 Deep Learning @ Brown University
 Currently under construction 
 
 ## Main File Structure
+### Code
 ```
-YouOnlyLookOnce-TF2.0 \
+~\YouOnlyLookOnce-TF2.0
+
   --src-| \
         |-config.py
         |-main.py
@@ -27,6 +29,21 @@ YouOnlyLookOnce-TF2.0 \
                      
   --tool-|
          \-preprocess_pascal_voc.py
+```
+
+### Model and Temporary Files
+```
+  --checkpoints-|
+                |-checkpoint
+                |-ckpt-XX.index
+                |-ckpt-xx.data-00000-of-00002
+                |-ckpt-xx.data-00001-of-00002
+  
+  --tmp-|
+        |- TBD
+  
+  --doc-|
+        |- TBD
 ```
          
 
