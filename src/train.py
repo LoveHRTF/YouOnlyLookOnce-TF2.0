@@ -1,3 +1,9 @@
+"""
+Train Function
+
+Param inputs: Model object and dataset object
+"""
+
 import config as cfg
 import tensorflow as tf
 
@@ -24,7 +30,7 @@ def train(model, dataset):
 
         loss_sum += loss
         loss_avg = loss_sum / (i+1)
-        if i % 5 == 0:
+        if i % 10 == 0:
             print("Batch ", dataset.record_point, "/", dataset.num_batch_per_epoch, " | avg_loss ", float(loss_avg))
 
     pass
