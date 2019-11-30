@@ -31,13 +31,13 @@ def train(model, dataset):
         model.optimizer.apply_gradients(zip(gradients, model.trainable_variables))
 
         elapsed_time    = time.time() - start_time                          # Get batch time
-        image_time        = elapsed_time / cfg.common_params['batch_size']
-        image_speed       = 1 / image_time
+        image_speed     = 1 / (elapsed_time / cfg.common_params['batch_size'])
         
         loss_sum += loss
         loss_avg = loss_sum / (i+1)
-        if i % 10 == 0:
-            print("Batch ", dataset.record_point, "/", dataset.num_batch_per_epoch, " | avg_loss ", float(loss_avg),
+        
+        if i % 15 == 0:
+            print("Batch ", dataset.record_point-1, "/", dataset.num_batch_per_epoch, " | avg_loss ", round(float(loss_avg), 6),
                 " | ", round(image_speed, 3), "images/sec")
 
     pass
