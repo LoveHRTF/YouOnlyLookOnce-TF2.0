@@ -10,7 +10,7 @@ Currently under construction
 ```
 ~\YouOnlyLookOnce-TF2.0
 
-  --src-| \
+  --src-|
         |-config.py
         |-main.py
         |-model.py
@@ -37,15 +37,14 @@ Currently under construction
                 |-checkpoint
                 |-ckpt-XX.index
                 |-ckpt-xx.data-00000-of-00002
-                |-ckpt-xx.data-00001-of-00002
+                \-ckpt-xx.data-00001-of-00002
   
   --tmp-|
-        |- TBD
+        \- TBD
   
   --doc-|
-        |- TBD
+        \- TBD
 ```
-         
 
 ## Data Gather and Pre-process (PASCAL VOC 2012 and 2007)
 
