@@ -45,7 +45,7 @@ def main():
         test_data = Dataset(cfg.common_params, cfg.dataset_params['train_file'])        # Testing Data Preprocess 
         print("============ Start Testing ============")                                # Test
         test_loss = test(model, test_data)
-        print("Avg_test_loss: ", str(test_loss))
+        print("Avg_test_loss: ", float(test_loss))
 
 if __name__ == "__main__":
     main()
