@@ -7,8 +7,8 @@ Currently under construction
 
 ## Main File Structure
 `
-YouOnlyLookOnce-TF2.0
-  |--src-|
+YouOnlyLookOnce-TF2.0 \
+  |--src-| \
          |-config.py
          |-main.py
          |-model.py
