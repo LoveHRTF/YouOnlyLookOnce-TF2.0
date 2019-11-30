@@ -6,24 +6,24 @@ This is the final project for CSCI-1470 Deep Learning @ Brown University
 Currently under construction 
 
 ## Main File Structure
-YouOnlyLookOnce-TF2.0
+YouOnlyLookOnce-TF2.0 \
   |--src-| \
-         |-config.py 
-         |-main.py
-         |-model.py
-         |-dataset.py
-         |-train.py
-         |-test.py
-         \-visualize.py
-  |-data-|
-         |-voc_label.py
-         |-train.txt
-         |-test.txt
-         \-VOCdevkit-|
-                     |-VOC2007
-                     \-VOC2012
-  |-tool-|
-         \-preprocess_pascal_voc.py
+         |-config.py \
+         |-main.py \
+         |-model.py \
+         |-dataset.py \
+         |-train.py \
+         |-test.py \
+         \-visualize.py \
+  |-data-| \
+         |-voc_label.py \
+         |-train.txt \
+         |-test.txt \
+         \-VOCdevkit-| \
+                     |-VOC2007 \
+                     \-VOC2012 \
+  |-tool-| \
+         \-preprocess_pascal_voc.py \
 
   
          
