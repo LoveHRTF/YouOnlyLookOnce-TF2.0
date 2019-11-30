@@ -33,7 +33,6 @@ def main():
 
     # Train and test
     if args.mode == 'train':
-        
         train_data = Dataset(cfg.common_params, cfg.dataset_params['train_file'])       # Training Data Preprocess 
         for epoch in range(args.num_epochs):                                            # Train
             print("============ Epoch ",epoch, "============")
