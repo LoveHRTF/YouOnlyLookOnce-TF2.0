@@ -12,11 +12,10 @@ def test(model, dataset):
     loss_sum = 0
     loss_avg = 0
     
-
     for i in range(dataset.num_batch_per_epoch):
+        start_time = time.time()
         images, labels = dataset.batch()                # Access images and labels from dataset object
 
-        start_time = time.time()
         predictions     = model.call(images)            # Forward pass
         loss            = model.loss(predictions, labels)
 
@@ -26,9 +25,11 @@ def test(model, dataset):
         loss_sum += loss
         loss_avg = loss_sum / (i+1)
         
+        loss_str = str(float(loss_avg))
+        speed_str = str(image_speed)
         if i % 15 == 0:
-            print("Test Batch ", dataset.record_point-1, "/", dataset.num_batch_per_epoch, " | avg_loss ", round(float(loss_avg), 6),
-                " | ", round(image_speed, 3), "images/sec")
+            print("Test Batch ", dataset.record_point-1, "/", dataset.num_batch_per_epoch, 
+                " | avg_loss ", loss_str[0:8], " | test_speed ", speed_str[0:5], "images/sec")
 
     return loss_avg
     

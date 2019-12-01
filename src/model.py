@@ -19,7 +19,7 @@ class Model(tf.keras.Model):
         # Hyper Parameters
         # Update Parameters and optimizer
         self.batch_size = cfg.common_params['batch_size']
-        self.learning_rate = 1e-6
+        self.learning_rate = 3e-5
         self.optimizer = tf.keras.optimizers.Adam(self.learning_rate)
         self.LeakyReLU = LeakyReLU(alpha=0.1)
 
@@ -129,8 +129,6 @@ class Model(tf.keras.Model):
         """
         Return: Average loss. Tensor of shape [1,]
         """
-        # TODO: Add loss function
-
         loss =  self.localizationloss(logits, labels) + \
                 self.confidenceloss(logits, labels) + \
                 self.classificationloss(logits, labels)
