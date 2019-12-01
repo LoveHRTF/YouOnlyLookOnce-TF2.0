@@ -41,6 +41,6 @@ def train(model, dataset):
 
         if i % 15 == 0:
             print("Batch ", dataset.record_point-1, "/", dataset.num_batch_per_epoch, 
-                " | avg_loss ", loss_str, " | train_speed", speed_str, "images/sec")
+                " | avg_loss ", loss_str[0:8], " | train_speed", speed_str[0:5], "images/sec")
 
     pass
