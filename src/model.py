@@ -73,7 +73,7 @@ class Model(tf.keras.Model):
         # Dropout Layers
         self.dropout_1      = tf.keras.layers.Dropout(0.5)                          # Drop out to prevent overfit
 
-    def call(self, inputs):
+    def call(self, inputs, is_test=False):
         """
         Param inputs: Image matrix of [448, 448, 3]
         Return      : Predictions tensor of [7, 7, 30]
@@ -117,7 +117,9 @@ class Model(tf.keras.Model):
         flatten_out     = self.flat_1(conv2d_6_out)                                 # Flatten layer
 
         dense_1_out     = self.dense_1(flatten_out)                                 # Dense Layer 1, (4096, 0)
-        dense_1_out     = self.dropout_1(dense_1_out)
+
+        if not is_test:                                                             # Dropout when train
+            dense_1_out     = self.dropout_1(dense_1_out)
 
         dense_2_out     = self.dense_2(dense_1_out)                                 # Dense Layer 2, (7, 7, 30)
 
