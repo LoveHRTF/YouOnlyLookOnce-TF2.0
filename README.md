@@ -46,25 +46,36 @@ Currently under construction
         \- TBD
 ```
 
-## Data Gather and Pre-process (PASCAL VOC 2012 and 2007)
+## 1. Data Gather and Pre-process (PASCAL VOC 2012 and 2007)
 
-### Data Download and Extraction
-* cd to /YouOnlyLookOnce-TF2.0/data/, and follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/data/README.md) to download and extract the PASCAL VOC 2012 and 2007 datasets
+### 1.1. Data Download and Extraction
+Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 
-### Re-scale and Coordinate Transformation
-* cd to /YouOnlyLookOnce-TF2.0/tool/, and follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/tool/README.md). This step will generate path for training data `train.txt` and `test.txt`
+Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/data/README.md) \
+This step will download and extract the PASCAL VOC 2012 and 2007 datasets
 
-## Train
+### 1.2. Re-scale and Coordinate Transformation
+Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 
-* cd to /YouOnlyLookOnce-TF2.0/src/
+Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/tool/README.md). \
+This step will generate path for training data `train.txt` and `test.txt`
 
-* Run `python main.py` to train from scratch, model checkpoints will be stored in /YouOnlyLookOnce-TF2.0/checkpoints/
-* Run `python main.py restore` to resume training from the latest saved checkpoint
+## 2. Train
+Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 
-## Test
+### 2.1. Train a new model
+To train from scratch, model checkpoints will be stored in /YouOnlyLookOnce-TF2.0/checkpoints/: \
+`python main.py` 
+### 2.2. Restore from a checkpoint
+To resume training from the latest saved checkpoint: \
+`python main.py restore` 
 
-* TBD
+## 3. Test
+Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 
-## Visualization
+To test the latest checkpoint on test set: \
+`python main.py --mode=test`
+
+## 4. Visualization
 
 * TBD
