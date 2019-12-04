@@ -6,6 +6,7 @@ from train import train
 from test import test
 from dataset import Dataset
 from model import Model
+from visualize import visualize
 # Configration file
 import config as cfg
 
@@ -39,10 +40,13 @@ def main():
                 manager.save()
 
     elif args.mode == 'test':
-        test_data = Dataset(cfg.common_params, cfg.dataset_params['train_file'])        # Testing Data Preprocess 
+        test_data = Dataset(cfg.common_params, cfg.dataset_params['test_file'])        # Testing Data Preprocess 
         print("============ Start Testing ============")                                # Test
         test_loss = test(model, test_data)
         print("Avg_test_loss: ", float(test_loss))
+
+    # Visualization
+
 
 if __name__ == "__main__":
     main()

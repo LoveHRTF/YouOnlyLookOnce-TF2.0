@@ -149,8 +149,8 @@ class Model(tf.keras.Model):
         xy_hat  = tf.gather(labels, indices=[0,1,5,6], axis=3)
         wh      = tf.gather(logits, indices=[2,3,7,8], axis=3)
         wh_hat  = tf.gather(labels, indices=[2,3,7,8], axis=3)
-        loss =  coord_scale * tf.reduce_sum(tf.math.square(xy - xy_hat)) + \
-                coord_scale * tf.reduce_sum(tf.math.square(wh - wh_hat))
+        loss    = coord_scale * tf.reduce_sum(tf.math.square(xy - xy_hat)) + \
+                  coord_scale * tf.reduce_sum(tf.math.square(wh - wh_hat))
         return loss
 
     def confidenceloss(self, logits, labels):
@@ -161,8 +161,8 @@ class Model(tf.keras.Model):
         # noobject_scale = cfg.common_params['noobject_scale']    # not used
         c       = tf.gather(logits, indices=[4,9], axis=3)
         c_hat   = tf.gather(labels, indices=[4,9], axis=3)
-        one = (c_hat + 1.) / 2.   # confidence -> noobject scale (1->1, 0->0.5)
-        loss = tf.reduce_sum(tf.multiply(tf.square(c - c_hat), one))
+        one     = (c_hat + 1.) / 2.   # confidence -> noobject scale (1->1, 0->0.5)
+        loss    = tf.reduce_sum(tf.multiply(tf.square(c - c_hat), one))
         return loss
 
     def classificationloss(self, logits, labels):
@@ -173,7 +173,7 @@ class Model(tf.keras.Model):
         idx     = tf.range(start=10, limit=30, delta=1)
         p       = tf.gather(logits, indices=idx, axis=3)
         p_hat   = tf.gather(labels, indices=idx, axis=3)
-        loss = tf.reduce_sum(tf.math.square(p - p_hat))
+        loss    = tf.reduce_sum(tf.math.square(p - p_hat))
         return loss
 
     def accuracy(self, logits, labels):
