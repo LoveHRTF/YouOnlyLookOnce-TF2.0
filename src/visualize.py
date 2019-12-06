@@ -1,48 +1,41 @@
 import cv2
 import numpy as np
 import tensorflow as tf
-
 import config as cfg
 
 
-def logits_to_result(model, img):
-    """
-    Use model to process a given image and return object detection result.
-    Params: Model object and an image.
-    Return: Tuple of information of objects. 
-            Each is a tuple of bounding box x, y, w, h and corresponding class logitsiction.
-            ((x,y,w,h,c), (x,y,w,h,c), ...)
-    """
-
-    logits = tf.squeeze(model.call(img))        # shape=(7, 7, 30)
-    
-
-    return ((1,2,3,4,10), (5,6,7,8,9))
-
-
-def visualize(model, img):
+def visualize(model, img_path):
     """
     Visualize an image with object detextion logitsictions.
-    Params: Model object and an image.
-    Return: New image with bounding boxes and class names.
-    """
+    :param model: Model object
+    :param img_path: Image path for testing
     
-    objects = logits_to_result(model, img)
+    :return: New image with bounding boxes and class names.
+    """
+    img = cv2.imread(img_path) 
+    
+    logits = np.squeeze(model(img))
+    
+    boxes, class_idx, scores = decoder(logits, conf_thresh=0.1, score_thresh=0.1)
 
-    for (x, y, w, h, c) in objects:
-
+    for i in range(boxes.shape[0]):
+        x1 = boxes[i, 0]
+        y1 = boxes[i, 1]
+        x2 = boxes[i, 2]
+        y2 = boxes[i, 3]
+        
         # draw a green rectangle to visualize the bounding box
-        image = cv2.rectangle(img, (x, y), (x+w, y+h), color=(0, 255, 0), thickness=2)
+        image = cv2.rectangle(img, (x1, y1), (x2, y2), color=(0, 255, 0), thickness=2)
 
-        # draw class name (a text string)
-        class_name = cfg.class_names[c]
+        # print class name (a green text)
+        class_name = cfg.class_names[class_idx[i]]
         image = cv2.putText( 
             image, class_name, (x,y), font=cv2.FONT_HERSHEY_SIMPLEX, 
             fontScale=1, color=(0,255,0), thickness=2, lineType=cv2.LINE_AA )
         
     cv2.imshow('detection visualization',image)
 
-    # cv2.imwrite('new_image', image)
+    cv2.imwrite('/output/visualize_result.jpg', image)
     # cv2.destroyAllWindows()
 
 
