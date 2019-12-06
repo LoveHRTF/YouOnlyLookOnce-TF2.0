@@ -1,15 +1,18 @@
-import tensorflow as tf
 import cv2
+import numpy as np
+import tensorflow as tf
+
 import config as cfg
 
-def logits_to_result(self, model, img):
-    '''
+
+def logits_to_result(model, img):
+    """
     Use model to process a given image and return object detection result.
     Params: Model object and an image.
     Return: Tuple of information of objects. 
-            Each is a tuple of bounding box x, y, w, h and corresponding class prediction.
+            Each is a tuple of bounding box x, y, w, h and corresponding class logitsiction.
             ((x,y,w,h,c), (x,y,w,h,c), ...)
-    '''
+    """
 
     logits = tf.squeeze(model.call(img))        # shape=(7, 7, 30)
     
@@ -17,12 +20,12 @@ def logits_to_result(self, model, img):
     return ((1,2,3,4,10), (5,6,7,8,9))
 
 
-def visualize(self, model, img):
-    '''
-    Visualize an image with object detextion predictions.
+def visualize(model, img):
+    """
+    Visualize an image with object detextion logitsictions.
     Params: Model object and an image.
     Return: New image with bounding boxes and class names.
-    '''
+    """
     
     objects = logits_to_result(model, img)
 
@@ -41,3 +44,107 @@ def visualize(self, model, img):
 
     # cv2.imwrite('new_image', image)
     # cv2.destroyAllWindows()
+
+
+def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
+    """Decode the output of model
+    :param logits: output of the model, size 7 x 7 x 30
+    :param conf_thresh: threshold of confidence, above which indicates an object in the cell
+    :param score_thresh: threshold of class-specific confidence score
+
+    :return: boxes(x1, y1, x2, y2), cls_indices, scores
+    """
+
+    boxes = []
+    cls_indices = []
+    scores = []
+
+    grid_num = config.common_params['output_size']
+    cell_size = 1./grid_num
+    logits = np.squeeze(logits)
+
+    # Compute mask for picking bbx in each cell
+    conf1 = logits[:,:,4][:,:,np.newaxis]
+    conf2 = logits[:,:,9][:,:,np.newaxis]
+    conf = np.concatenate((conf1, conf2),axis=-1)
+    mask = (conf >= conf_thresh) and (conf == conf.max())
+
+    for i in range(grid_num):
+        for j in range(grid_num):
+            for b in range(2):
+                if mask[i, j, b]:
+                    # Get x, y, w, h, confidence of bbx,
+                    # (x, y) represents the center of the bbx relative to the bounds of the grid cell
+                    # w, h are predicted relative to the whole image.
+                    box = logits[i, j, b * 5: b * 5 + 4]
+                    confidence = logits[i, j, b * 5 + 4]
+
+                    # Compute the offset of the cell
+                    # Convert the center of bbx to image coordinates system
+                    offset = np.array([j, i]) * cell_size
+                    box[:2] = box[:2] * cell_size + offset
+                    box_xy = np.zeros_like(box)
+
+                    # Compute the upper left and bottom right coordinates of bbx
+                    box_xy[:2] = box[:2] - 0.5 * box[2:]
+                    box_xy[2:] = box[:2] + 0.5 * box[2:]
+
+                    # Get max prob and corresponding class index
+                    max_prob = np.max(logits[i, j, 10:])
+                    cls_index = np.argmax(logits[i, j, 10:])
+
+                    if confidence * max_prob > score_thresh:
+                        boxes.append(box_xy)
+                        cls_indices.append(cls_index)
+                        scores.append(confidence * max_prob)
+
+    if len(boxes) == 0:
+        boxes = np.zeros((1,4))
+        scores = np.zeros(1)
+        cls_indices = np.zeros(1)
+    else:
+        boxes = np.array(boxes)
+        scores = np.array(scores)
+        cls_indices = np.array(cls_indices)
+    keep = nms(boxes, scores)
+
+    return boxes[keep], cls_indices[keep], scores[keep]
+
+
+def nms(boxes, scores, overlap_thresh=0.5):
+    """Non-maximum suppression
+    :param boxes: bounding boxes holding (x1, y1, x2, y2)
+    :param scores: class-specific score of each bbx
+    :param overlap_thresh: threshold of overlap
+
+    :return: the indices of bbx to keep
+    """
+
+    x1 = boxes[:,0]
+    y1 = boxes[:,1]
+    x2 = boxes[:,2]
+    y2 = boxes[:,3]
+    areas = (x2 - x1) * (y2 - y1)
+    order = np.argsort(scores)[::-1]
+    keep = []
+    while len(order) > 0:
+        i = order[0]
+        keep.append(i)
+        if len(order) == 1:
+            break
+
+        xx1 = x1[order[1:]].clip(min=x1[i])
+        yy1 = y1[order[1:]].clip(min=y1[i])
+        xx2 = x2[order[1:]].clip(max=x2[i])
+        yy2 = y2[order[1:]].clip(max=y2[i])
+
+        w = (xx2-xx1).clip(min=0)
+        h = (yy2-yy1).clip(min=0)
+        inter = w*h
+
+        ovr = inter / (areas[i] + areas[order[1:]] - inter)
+        ids = (ovr <= overlap_thresh).nonzero()[0]
+        if len(ids) == 0:
+            break
+        order = order[ids+1]
+    return keep
