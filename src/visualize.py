@@ -33,7 +33,7 @@ def visualization(model, img_path):
         # print class name (a green text)
         class_name = cfg.class_names[class_idx[i]]
         image = cv2.putText( 
-            image, class_name, (x,y), font=cv2.FONT_HERSHEY_SIMPLEX, 
+            image, class_name, (x1, y1), font=cv2.FONT_HERSHEY_SIMPLEX, 
             fontScale=1, color=(0,255,0), thickness=2, lineType=cv2.LINE_AA )
         
     cv2.imshow('detection visualization',image)
