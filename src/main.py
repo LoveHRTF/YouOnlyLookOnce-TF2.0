@@ -51,17 +51,21 @@ def main():
     elif args.mode == 'show':
         
         test_data = Dataset(cfg.common_params, cfg.dataset_params['test_file'])
-        img, lab = test_data.batch()
-        image = img[0:1]
-        logits = model(image)
-
-        boxes, class_idx, scores = visualize.decoder(logits, conf_thresh=0.1, score_thresh=0.1)
-
-        print(boxes, class_idx, scores)
         
-        img = img.astype(int)
-        plt.imshow(img[0])
-        plt.show()
+        visualization(model, '../test.png')
+
+        # img, _ = test_data.batch()
+        # image = img[0:1]
+        # logits = model(image)
+
+        # boxes, class_idx, scores = visualize.decoder(logits, conf_thresh=0.1, score_thresh=0.1)
+
+
+        # print(boxes, class_idx, scores)
+        
+        # img = img.astype(int)
+        # plt.imshow(img[0])
+        # plt.show()
    
 
 

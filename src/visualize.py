@@ -14,7 +14,8 @@ def visualization(model, img_path):
     :return: New image with bounding boxes and class names.
     """
     # bgr_mean = (103.939, 116.779, 123.68)  # bgr
-    img = cv2.imread(img_path)
+    # img = cv2.imread(img_path)
+    img = img_path
 
     # resize origin image
     image_size = cfg.common_params['image_size']
