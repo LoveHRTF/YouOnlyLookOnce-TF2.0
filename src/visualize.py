@@ -5,7 +5,7 @@ import config as cfg
 import matplotlib.pyplot as plt
 
 
-def visualize(model, img_path):
+def visualization(model, img_path):
     """
     Visualize an image with object detextion logitsictions.
     :param model: Model object
@@ -55,7 +55,7 @@ def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
     cls_indices = []
     scores = []
 
-    grid_num = config.common_params['output_size']
+    grid_num = cfg.common_params['output_size']
     cell_size = 1./grid_num
     logits = np.squeeze(logits)
 
