@@ -64,9 +64,8 @@ class Dataset(object):
 
         h, w, _ = img.shape
         boxes /= [w, h, w, h]
-        img = self.sub_mean(img, self.mean)
+        # img = self.sub_mean(img, self.mean)
         img = cv2.resize(img, (self.image_size, self.image_size))
-
         target = self.encode(boxes, labels)
         return img, target
 

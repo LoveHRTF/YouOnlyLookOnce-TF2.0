@@ -13,16 +13,16 @@ def visualization(model, img_path):
     
     :return: New image with bounding boxes and class names.
     """
+    # bgr_mean = (103.939, 116.779, 123.68)  # bgr
     img = cv2.imread(img_path)
-    cv2.imshow(img)
-    
+
     # resize origin image
     image_size = cfg.common_params['image_size']
     img = cv2.resize(img, (image_size, image_size))
     img = tf.reshape(img, (1, image_size, image_size, 3))
+    # img = img - np.array(bgr_mean, dtype=np.float32)
 
     logits = model(img)
-    
     boxes, class_idx, scores = decoder(logits, conf_thresh=0.1, score_thresh=0.1)
 
     for i in range(boxes.shape[0]):
@@ -63,10 +63,10 @@ def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
     logits = np.squeeze(logits)
 
     # Compute mask for picking bbx in each cell
-    conf1 = logits[:,:,4][:,:,np.newaxis]
-    conf2 = logits[:,:,9][:,:,np.newaxis]
+    conf1 = logits[:, :, 4][:, :, np.newaxis]
+    conf2 = logits[:, :, 9][:, :, np.newaxis]
     conf = np.concatenate((conf1, conf2),axis=-1)
-    mask = (conf >= conf_thresh) and (conf == conf.max())
+    mask = (conf >= conf_thresh) + (conf == conf.max())
 
     for i in range(grid_num):
         for j in range(grid_num):
@@ -75,8 +75,8 @@ def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
                     # Get x, y, w, h, confidence of bbx,
                     # (x, y) represents the center of the bbx relative to the bounds of the grid cell
                     # w, h are predicted relative to the whole image.
-                    box = logits[i, j, b * 5: b * 5 + 4]
-                    confidence = logits[i, j, b * 5 + 4]
+                    box = logits[i, j, b * 5: b * 5 + 4].copy()
+                    confidence = logits[i, j, b * 5 + 4].copy()
 
                     # Compute the offset of the cell
                     # Convert the center of bbx to image coordinates system
