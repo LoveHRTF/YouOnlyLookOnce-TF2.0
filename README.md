@@ -17,7 +17,10 @@ Currently under construction
         |-dataset.py
         |-train.py
         |-test.py
-        \-visualize.py
+        \-visualize.py-|
+                       |-visualization()
+                       |-decoder()
+                       \-nms()
         
   --data-|
          |-voc_label.py
