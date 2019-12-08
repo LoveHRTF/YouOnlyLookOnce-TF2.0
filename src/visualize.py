@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 import tensorflow as tf
-import config as cfg
 import matplotlib.pyplot as plt
+import config as cfg
 
 
 def visualization(model, img_path):
@@ -15,9 +15,13 @@ def visualization(model, img_path):
     """
     img = cv2.imread(img_path)
     cv2.imshow(img)
-
-    logits = np.squeeze(model(img))
     
+    # resize origin image
+    image_size = cfg.common_params['image_size']
+    img = cv2.resize(img, (image_size, image_size))
+    img = tf.reshape(img, (1, image_size, image_size, 3))
+
+    logits = model(img)
     
     boxes, class_idx, scores = decoder(logits, conf_thresh=0.1, score_thresh=0.1)
 
@@ -36,10 +40,9 @@ def visualization(model, img_path):
             image, class_name, (x1, y1), font=cv2.FONT_HERSHEY_SIMPLEX, 
             fontScale=1, color=(0,255,0), thickness=2, lineType=cv2.LINE_AA )
         
-    cv2.imshow('detection visualization',image)
+    cv2.imshow('show_result',image)
 
-    cv2.imwrite('/output/visualize_result.jpg', image)
-    # cv2.destroyAllWindows()
+    cv2.imwrite('show_result.jpg', image)
 
 
 def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
