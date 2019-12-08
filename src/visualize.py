@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import tensorflow as tf
 import config as cfg
+import matplotlib.pyplot as plt
 
 
 def visualize(model, img_path):
@@ -12,9 +13,11 @@ def visualize(model, img_path):
     
     :return: New image with bounding boxes and class names.
     """
-    img = cv2.imread(img_path) 
-    
+    img = cv2.imread(img_path)
+    cv2.imshow(img)
+
     logits = np.squeeze(model(img))
+    
     
     boxes, class_idx, scores = decoder(logits, conf_thresh=0.1, score_thresh=0.1)
 
