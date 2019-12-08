@@ -14,12 +14,12 @@ def test(model, dataset):
     
     for i in range(dataset.num_batch_per_epoch):
         start_time = time.time()
-        images, labels = dataset.batch()                # Access images and labels from dataset object
+        images, labels = dataset.batch()                        # Access images and labels from dataset object
 
-        predictions     = model.call(images, is_test=True)              # Forward pass
+        predictions     = model(images)                         # Forward pass
         loss            = model.loss(predictions, labels)
 
-        elapsed_time    = time.time() - start_time                      # Get batch time
+        elapsed_time    = time.time() - start_time              # Get batch time
         image_speed     = 1 / (elapsed_time / cfg.common_params['batch_size'])
 
         loss_sum += loss

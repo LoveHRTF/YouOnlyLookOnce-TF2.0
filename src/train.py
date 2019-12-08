@@ -22,7 +22,7 @@ def train(model, dataset):
         
         # Gradient tape
         with tf.GradientTape() as tape:
-            predictions = model.call(images)
+            predictions = model(images)
             loss = model.loss(predictions, labels)
         
         # Apply gradient
