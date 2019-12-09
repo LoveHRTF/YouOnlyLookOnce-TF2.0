@@ -14,10 +14,11 @@ def visualization(model, img_path):
     :return: New image with bounding boxes and class names.
     """
     # bgr_mean = (103.939, 116.779, 123.68)  # bgr
-    img = cv2.imread(img_path)
+    img_ = cv2.imread(img_path)
+    h, w, _ = img_.shape
     # resize origin image
     image_size = int(cfg.common_params['image_size'])
-    img = cv2.resize(img, (image_size, image_size))
+    img = cv2.resize(img_, (image_size, image_size))
 
     # Forward Pass, prediction
     model_input = tf.reshape(img, (-1, image_size, image_size, 3))
@@ -30,10 +31,10 @@ def visualization(model, img_path):
     # plt.show()
 
     for i in range(boxes.shape[0]):
-        x1 = int(boxes[i, 0])
-        y1 = int(boxes[i, 1])
-        x2 = int(boxes[i, 2])
-        y2 = int(boxes[i, 3])
+        x1 = int(boxes[i, 0] * w)
+        y1 = int(boxes[i, 1] * h)
+        x2 = int(boxes[i, 2] * w)
+        y2 = int(boxes[i, 3] * h)
         
         # draw a green rectangle to visualize the bounding box
         # start_point = (x1+30 * i, y1+30 * i)
@@ -43,14 +44,14 @@ def visualization(model, img_path):
         thickness = 2
         fontScale = 1
 
-        image = cv2.rectangle(img, start_point, end_point, color, thickness)
+        image = cv2.rectangle(img_, start_point, end_point, color, thickness)
         # print class name (a green text)
         class_name = cfg.class_names[int(class_idx[i])]
         image = cv2.putText( 
             image, class_name, start_point, cv2.FONT_HERSHEY_SIMPLEX, 
             fontScale, color, thickness, cv2.LINE_AA)
         
-    cv2.imshow('show_result',image)
+    cv2.imshow('show_result', image)
 
     cv2.imwrite('show_result.jpg', image)
 
