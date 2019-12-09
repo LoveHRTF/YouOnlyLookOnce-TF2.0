@@ -8,7 +8,7 @@ import config as cfg
 
 def generate_prediction(model, image_list, image_number, storage_folder='default_folder/'):
     """
-    Visualize a list of image, draw bounding box, and store in local folder
+    Visualize a list of image, draw bounding boxes, and store in local folder
     : param model: Model object
     : param image_list: txt list of images
     : param image_number: number of images to generate
@@ -33,7 +33,7 @@ def generate_prediction(model, image_list, image_number, storage_folder='default
 
 def visualization(model, img, is_path=True, is_store=True, storage_folder='default_folder/'):
     """
-    Visualize an image with object detextion logitsictions.
+    Visualize an image with object detection logitsictions.
     :param model: Model object
     :param img_path: Image path for testing
     
