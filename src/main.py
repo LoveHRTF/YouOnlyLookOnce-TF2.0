@@ -1,3 +1,7 @@
+"""
+Description: Main function for training and testing the model
+"""
+
 # Packages
 import argparse
 import tensorflow as tf

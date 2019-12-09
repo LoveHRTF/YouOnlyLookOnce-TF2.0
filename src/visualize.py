@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import config as cfg
 
 
-def visualization(model, img_path):
+def visualization(model, img, is_path=True, is_store=True):
     """
     Visualize an image with object detextion logitsictions.
     :param model: Model object
@@ -13,8 +13,11 @@ def visualization(model, img_path):
     
     :return: New image with bounding boxes and class names.
     """
-    # bgr_mean = (103.939, 116.779, 123.68)  # bgr
-    img_ = cv2.imread(img_path)
+    if is_path:
+        img_ = cv2.imread(img)
+    else:
+        img_ = img
+
     h, w, _ = img_.shape
     # resize origin image
     image_size = int(cfg.common_params['image_size'])
@@ -25,10 +28,6 @@ def visualization(model, img_path):
     model_input = tf.dtypes.cast(model_input, tf.float32)
     logits = model(model_input)
     boxes, class_idx, scores = decoder(logits, conf_thresh=0.1, score_thresh=0.1)
-    print(scores)
-
-    # plt.imshow(img)
-    # plt.show()
 
     for i in range(boxes.shape[0]):
         x1 = int(boxes[i, 0] * w)
@@ -47,13 +46,17 @@ def visualization(model, img_path):
         image = cv2.rectangle(img_, start_point, end_point, color, thickness)
         # print class name (a green text)
         class_name = cfg.class_names[int(class_idx[i])]
+        score = str(scores[i])
+        title = class_name + ':' + score
         image = cv2.putText( 
-            image, class_name, start_point, cv2.FONT_HERSHEY_SIMPLEX, 
+            image, title, start_point, cv2.FONT_HERSHEY_SIMPLEX, 
             fontScale, color, thickness, cv2.LINE_AA)
-        
-    cv2.imshow('show_result', image)
+    
+    if is_store:
+        cv2.imshow('show_result', image)
+        cv2.imwrite('show_result.jpg', image)
 
-    cv2.imwrite('show_result.jpg', image)
+    return image
 
 
 def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
@@ -119,7 +122,6 @@ def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
     keep = nms(boxes, scores)
 
     return boxes[keep], cls_indices[keep], scores[keep]
-    # return boxes, cls_indices, scores
 
 
 def nms(boxes, scores, overlap_thresh=0.5):
