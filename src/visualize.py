@@ -29,32 +29,35 @@ def visualization(model, img, is_path=True, is_store=True):
     logits = model(model_input)
     boxes, class_idx, scores = decoder(logits, conf_thresh=0.1, score_thresh=0.1)
 
-    for i in range(boxes.shape[0]):
-        x1 = int(boxes[i, 0] * w)
-        y1 = int(boxes[i, 1] * h)
-        x2 = int(boxes[i, 2] * w)
-        y2 = int(boxes[i, 3] * h)
-        
-        # draw a green rectangle to visualize the bounding box
-        # start_point = (x1+30 * i, y1+30 * i)
-        start_point = (x1, y1)
-        end_point = (x2, y2)
-        color = (0, 255, 0)
-        thickness = 2
-        fontScale = 1
+    if len(boxes) > 0:
+        for i in range(boxes.shape[0]):
+            x1 = int(boxes[i, 0] * w)
+            y1 = int(boxes[i, 1] * h)
+            x2 = int(boxes[i, 2] * w)
+            y2 = int(boxes[i, 3] * h)
+            
+            # draw a green rectangle to visualize the bounding box
+            # start_point = (x1+30 * i, y1+30 * i)
+            start_point = (x1, y1)
+            end_point = (x2, y2)
+            color = (0, 255, 0)
+            thickness = 2
+            fontScale = 1
 
-        image = cv2.rectangle(img_, start_point, end_point, color, thickness)
-        # print class name (a green text)
-        class_name = cfg.class_names[int(class_idx[i])]
-        score = str(scores[i])
-        title = class_name + ':' + score
-        image = cv2.putText( 
-            image, title, start_point, cv2.FONT_HERSHEY_SIMPLEX, 
-            fontScale, color, thickness, cv2.LINE_AA)
-    
-    if is_store:
-        cv2.imshow('show_result', image)
-        cv2.imwrite('show_result.jpg', image)
+            image = cv2.rectangle(img_, start_point, end_point, color, thickness)
+            # print class name (a green text)
+            class_name = cfg.class_names[int(class_idx[i])]
+            score = str(scores[i])
+            title = class_name + ':' + score
+            image = cv2.putText( 
+                image, title, start_point, cv2.FONT_HERSHEY_SIMPLEX, 
+                fontScale, color, thickness, cv2.LINE_AA)
+        
+        if is_store:
+            cv2.imshow('show_result', image)
+            cv2.imwrite('show_result.jpg', image)
+    else:
+        image = img_
 
     return image
 
@@ -124,7 +127,7 @@ def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
     return boxes[keep], cls_indices[keep], scores[keep]
 
 
-def nms(boxes, scores, overlap_thresh=0.5):
+def nms(boxes, scores, overlap_thresh=0.5, score_thresh=0.2):
     """Non-maximum suppression
     :param boxes: bounding boxes holding (x1, y1, x2, y2)
     :param scores: class-specific score of each bbx
@@ -142,7 +145,9 @@ def nms(boxes, scores, overlap_thresh=0.5):
     keep = []
     while len(order) > 0:
         i = order[0]
-        keep.append(i)
+        if scores[i] > score_thresh:
+            keep.append(i)
+
         if len(order) == 1:
             break
 
