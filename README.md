@@ -18,7 +18,9 @@ Currently under construction
         |-train.py
         |-test.py
         |-video_application.py
+        |-image-application
         \-visualize.py-|
+                       |-generate_prediction()
                        |-visualization()
                        |-decoder()
                        \-nms()
@@ -67,6 +69,8 @@ This step will generate path for training data `train.txt` and `test.txt`
 ## 2. Train
 Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 
+Test outputs will be generated every time when model was auto saved (per 20 epochs), and located in ` /YouOnlyLookOnce-TF2.0/tmp/epoch_n`
+
 ### 2.1. Train a new model
 To train from scratch, model checkpoints will be stored in /YouOnlyLookOnce-TF2.0/checkpoints/: \
 `python main.py` 
@@ -102,6 +106,7 @@ To perform the detection: \
 * The generated image file will be stored in `~/YouOnlyLookOnce-TF2.0/tmp/single_images`
 
 Following is the sample command for utilizing this script: \
+
 `python image_application.py --path=/home/foo/Documents/YouOnlyLookOnce-TF2.0/test_image.jpg`
 
 
