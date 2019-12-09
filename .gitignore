@@ -14,3 +14,11 @@ checkpoints/ckpt*
 *.tar
 
 __pycache__
+test.jpg
+test.png
+test2.png
+test3.png
+test_1.png
+test_x.png
+src/show_result.jpg
+test.png
