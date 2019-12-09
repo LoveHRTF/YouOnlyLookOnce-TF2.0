@@ -23,11 +23,11 @@ def visualization(model, img_path):
     model_input = tf.reshape(img, (-1, image_size, image_size, 3))
     model_input = tf.dtypes.cast(model_input, tf.float32)
     logits = model(model_input)
-    print(logits)
     boxes, class_idx, scores = decoder(logits, conf_thresh=0.1, score_thresh=0.1)
+    print(scores)
 
-    plt.imshow(img)
-    plt.show()
+    # plt.imshow(img)
+    # plt.show()
 
     for i in range(boxes.shape[0]):
         x1 = int(boxes[i, 0])
@@ -36,11 +36,7 @@ def visualization(model, img_path):
         y2 = int(boxes[i, 3])
         
         # draw a green rectangle to visualize the bounding box
-
-        print("dfssaigheifashgisodfhgoisdfhgoisdfhgoisdhgosdhoi",x1)
-
-
-        start_point = (x1+30, y1+30)
+        start_point = (x1+30 * i, y1+30 * i)
         end_point = (x2, y2)
         color = (0, 255, 0)
         thickness = 2
@@ -121,6 +117,7 @@ def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
     keep = nms(boxes, scores)
 
     return boxes[keep], cls_indices[keep], scores[keep]
+    # return boxes, cls_indices, scores
 
 
 def nms(boxes, scores, overlap_thresh=0.5):

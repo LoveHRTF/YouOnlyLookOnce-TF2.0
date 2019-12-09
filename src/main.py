@@ -2,6 +2,8 @@
 import argparse
 import tensorflow as tf
 import matplotlib.pyplot as plt
+import os
+
 # Class and functions
 from train import train
 from test import test
@@ -11,6 +13,8 @@ import visualize
 from visualize import visualization
 # Configration file
 import config as cfg
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' 
 
 # Input arguments
 parser = argparse.ArgumentParser()
