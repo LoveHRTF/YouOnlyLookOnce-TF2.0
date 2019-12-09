@@ -96,7 +96,7 @@ def visualization(model, img, is_path=True, is_store=True, storage_folder='defau
     return image
 
 
-def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
+def decoder(logits, conf_thresh=0.1, score_thresh=0.2):
     """Decode the output of model
     :param logits: output of the model, size 7 x 7 x 30
     :param conf_thresh: threshold of confidence, above which indicates an object in the cell
@@ -160,7 +160,7 @@ def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
     return boxes[keep], cls_indices[keep], scores[keep]
 
 
-def nms(boxes, scores, overlap_thresh=0.5, score_thresh=0.2):
+def nms(boxes, scores, overlap_thresh=0.25, score_thresh=0.25):
     """Non-maximum suppression
     :param boxes: bounding boxes holding (x1, y1, x2, y2)
     :param scores: class-specific score of each bbx

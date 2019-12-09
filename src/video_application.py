@@ -45,7 +45,7 @@ def main():
         img_bb = visualization(model, img, is_path=False, is_store=False)
 
         # Update screen
-        cv2.imshow('my webcam', img_bb)
+        cv2.imshow('YoloV1.0', img_bb)
         if cv2.waitKey(1) == 10: 
             break               # esc to quit
 
