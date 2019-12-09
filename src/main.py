@@ -15,7 +15,7 @@ from test import test
 from dataset import Dataset
 from model import Model
 import visualize
-from visualize import visualization
+from visualize import visualization, generate_prediction
 # Configration file
 import config as cfg
 
@@ -27,7 +27,7 @@ parser.add_argument('--num-epochs', type=int, default=400)
 parser.add_argument('--mode', type=str, default='train', help='Can be "train" or "test" or "visualize"')
 parser.add_argument('--restore', action='store_true',
                     help='Use this flag if you want to resuming training from the latest-saved checkpoint')
-parser.add_argument('--visualize-number', type=int, default=1, help='Number of images generate when in visualize mode')
+parser.add_argument('--visualize-number', type=int, default=128, help='Number of images generate when in visualize mode')
 args = parser.parse_args()
 
 def main():
@@ -50,6 +50,8 @@ def main():
             train(model, train_data)
             if epoch % 20 == 0:                                                         # Save checkpoint
                 manager.save()
+                folder_name = 'epoch_' + str(epoch) + '/'
+                generate_prediction(model, cfg.dataset_params['test_file'], args.visualize_number, folder_name)
 
     elif args.mode == 'test':
         test_data = Dataset(cfg.common_params, cfg.dataset_params['test_file'])        # Testing Data Preprocess 
@@ -59,18 +61,7 @@ def main():
     
     # Visualization, 
     elif args.mode == 'visualize':
-        print("============ Generate Visualizations ============") 
-        fs_input = open(cfg.dataset_params['test_file'], 'r')
-        count = 0
-        for line in fs_input.readlines():
-            line = line.strip().split(' ')
-            # print(line[0])
-            visualization(model, line[0], is_path=True, is_store=True)
-
-            # Store certain number of images for visualization
-            count += 1
-            if count == args.visualize_number:
-                break
+        generate_prediction(model, cfg.dataset_params['test_file'], args.visualize_number)
 
 
 if __name__ == "__main__":

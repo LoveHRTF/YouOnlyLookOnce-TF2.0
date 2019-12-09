@@ -22,3 +22,5 @@ test_1.png
 test_x.png
 src/show_result.jpg
 test.png
+tmp/*
+!tmp/README.md

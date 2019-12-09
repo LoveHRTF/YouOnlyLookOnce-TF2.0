@@ -6,7 +6,32 @@ import os
 import config as cfg
 
 
-def visualization(model, img, is_path=True, is_store=True, storage_folder='img/'):
+def generate_prediction(model, image_list, image_number, storage_folder='default_folder/'):
+    """
+    Visualize a list of image, draw bounding box, and store in local folder
+    : param model: Model object
+    : param image_list: txt list of images
+    : param image_number: number of images to generate
+    : param storage_folder: subfolder directory under ~/tmp 
+
+    : return: None
+    """
+    print("============ Generate Visualizations ============")
+    count = 0
+    fs_input = open(image_list, 'r')
+    for line in fs_input.readlines():
+        line = line.strip().split(' ')
+        print(count, '/', image_number, ':', line[0])
+        visualization(model, line[0], is_path=True, is_store=True, storage_folder=storage_folder)
+        fs_input.close()
+        # Store certain number of images for visualization
+        count += 1
+        if count >= image_number:
+            break
+    print('===== Result generation finished, stored in ~/tmp/' + storage_folder + ' =====')
+
+
+def visualization(model, img, is_path=True, is_store=True, storage_folder='default_folder/'):
     """
     Visualize an image with object detextion logitsictions.
     :param model: Model object
@@ -56,16 +81,17 @@ def visualization(model, img, is_path=True, is_store=True, storage_folder='img/'
             image = cv2.putText( 
                 image, title, start_point, cv2.FONT_HERSHEY_SIMPLEX, 
                 fontScale, color, thickness, cv2.LINE_AA)
-        
-        if is_store:
-            # Generate Path
-            path = '../tmp/' + storage_folder
-            if not os.path.exists(path):
-                os.makedirs(path)
-            # Store image
-            cv2.imwrite(path + img_name, image)
+                
     else:
         image = img_
+
+    if is_store:
+        # Generate Path
+        path = '../tmp/' + storage_folder
+        if not os.path.exists(path):
+            os.makedirs(path)
+        # Store image
+        cv2.imwrite(path + img_name, image)
 
     return image
 
