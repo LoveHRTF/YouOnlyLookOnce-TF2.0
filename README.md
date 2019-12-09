@@ -17,6 +17,7 @@ Currently under construction
         |-dataset.py
         |-train.py
         |-test.py
+        |-video_application.py
         \-visualize.py-|
                        |-visualization()
                        |-decoder()
@@ -81,4 +82,21 @@ To test the latest checkpoint on test set: \
 
 ## 4. Visualization
 
+### 4.1. Real-time Video Detection
+We have developed a simple script to visualize the detection, a webcam is required. \
+To perform realtime detection: \
+
+* Place trainde model under `~/YouOnlyLookOnce-TF2.0/checkpoints`
+* Connect a webcam and ensure the driver was installed
+* Run `python video_application.py` Under dir `~/YouOnlyLookOnce-TF2.0/src/`
+* The realtime video should be shown on screen
+
+### 4.2. Single Image Detection
 * TBD
+
+
+
+
+
+
+
