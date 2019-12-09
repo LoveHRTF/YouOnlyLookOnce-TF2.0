@@ -36,7 +36,8 @@ def visualization(model, img_path):
         y2 = int(boxes[i, 3])
         
         # draw a green rectangle to visualize the bounding box
-        start_point = (x1+30 * i, y1+30 * i)
+        # start_point = (x1+30 * i, y1+30 * i)
+        start_point = (x1, y1)
         end_point = (x2, y2)
         color = (0, 255, 0)
         thickness = 2
