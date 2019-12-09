@@ -88,11 +88,21 @@ To perform realtime detection: \
 
 * Place trainde model under `~/YouOnlyLookOnce-TF2.0/checkpoints`
 * Connect a webcam and ensure the driver was installed
-* Run `python video_application.py` Under dir `~/YouOnlyLookOnce-TF2.0/src/`
-* The realtime video should be shown on screen
+* Run `python video_application.py` under dir `~/YouOnlyLookOnce-TF2.0/src/`
+* The realtime video will be shown on screen
 
-### 4.2. Single Image Detection
-* TBD
+### 4.2. Image Detection
+
+To perform detection on a list of image, we have provided a simple script to read the candidate image, perform detection, and sotre the file in local drive. \
+
+To perform the detection: \
+
+* Place trainde model under `~/YouOnlyLookOnce-TF2.0/checkpoints`
+* Use `image_application.py` under dir `~/YouOnlyLookOnce-TF2.0/src/`
+* The generated image file will be stored in `~/YouOnlyLookOnce-TF2.0/tmp/single_images`
+
+Following is the sample command for utilizing this script: \
+`python image_application.py --path=/home/foo/Documents/YouOnlyLookOnce-TF2.0/test_image.jpg`
 
 
 
