@@ -2,10 +2,11 @@ import cv2
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
+import os
 import config as cfg
 
 
-def visualization(model, img, is_path=True, is_store=True):
+def visualization(model, img, is_path=True, is_store=True, storage_folder='img/'):
     """
     Visualize an image with object detextion logitsictions.
     :param model: Model object
@@ -15,6 +16,9 @@ def visualization(model, img, is_path=True, is_store=True):
     """
     if is_path:
         img_ = cv2.imread(img)
+        # Get image name
+        img_name = img.split('/')
+        img_name = img_name[-1]
     else:
         img_ = img
 
@@ -27,7 +31,7 @@ def visualization(model, img, is_path=True, is_store=True):
     model_input = tf.reshape(img, (-1, image_size, image_size, 3))
     model_input = tf.dtypes.cast(model_input, tf.float32)
     logits = model(model_input)
-    boxes, class_idx, scores = decoder(logits, conf_thresh=0.1, score_thresh=0.1)
+    boxes, class_idx, scores = decoder(logits, conf_thresh=0.15, score_thresh=0.15)
 
     if len(boxes) > 0:
         for i in range(boxes.shape[0]):
@@ -48,14 +52,18 @@ def visualization(model, img, is_path=True, is_store=True):
             # print class name (a green text)
             class_name = cfg.class_names[int(class_idx[i])]
             score = str(scores[i])
-            title = class_name + ':' + score
+            title = class_name + ':' + score[0:6]
             image = cv2.putText( 
                 image, title, start_point, cv2.FONT_HERSHEY_SIMPLEX, 
                 fontScale, color, thickness, cv2.LINE_AA)
         
         if is_store:
-            cv2.imshow('show_result', image)
-            cv2.imwrite('show_result.jpg', image)
+            # Generate Path
+            path = '../tmp/' + storage_folder
+            if not os.path.exists(path):
+                os.makedirs(path)
+            # Store image
+            cv2.imwrite(path + img_name, image)
     else:
         image = img_
 
@@ -67,7 +75,6 @@ def decoder(logits, conf_thresh=0.1, score_thresh=0.1):
     :param logits: output of the model, size 7 x 7 x 30
     :param conf_thresh: threshold of confidence, above which indicates an object in the cell
     :param score_thresh: threshold of class-specific confidence score
-
     :return: boxes(x1, y1, x2, y2), cls_indices, scores
     """
 
@@ -132,7 +139,6 @@ def nms(boxes, scores, overlap_thresh=0.5, score_thresh=0.2):
     :param boxes: bounding boxes holding (x1, y1, x2, y2)
     :param scores: class-specific score of each bbx
     :param overlap_thresh: threshold of overlap
-
     :return: the indices of bbx to keep
     """
 
