@@ -18,7 +18,7 @@ Currently under construction
         |-train.py
         |-test.py
         |-video_application.py
-        |-image-application
+        |-image-application.py
         \-visualize.py-|
                        |-generate_prediction()
                        |-visualization()
