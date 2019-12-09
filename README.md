@@ -90,7 +90,7 @@ To test the latest checkpoint on test set: \
 We have developed a simple script to visualize the detection, a webcam is required. \
 To perform realtime detection: \
 
-* Place trainde model under `~/YouOnlyLookOnce-TF2.0/checkpoints`
+* Place trained model under `~/YouOnlyLookOnce-TF2.0/checkpoints`
 * Connect a webcam and ensure the driver was installed
 * Run `python video_application.py` under dir `~/YouOnlyLookOnce-TF2.0/src/`
 * The realtime video will be shown on screen
@@ -101,7 +101,7 @@ To perform detection on a list of image, we have provided a simple script to rea
 
 To perform the detection: \
 
-* Place trainde model under `~/YouOnlyLookOnce-TF2.0/checkpoints`
+* Place trained model under `~/YouOnlyLookOnce-TF2.0/checkpoints`
 * Use `image_application.py` under dir `~/YouOnlyLookOnce-TF2.0/src/`
 * The generated image file will be stored in `~/YouOnlyLookOnce-TF2.0/tmp/single_images`
 
