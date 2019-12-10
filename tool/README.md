@@ -2,7 +2,7 @@
 
 
 ## PASCAL-VOC Dataset
-To get the PASCAL VOC data and preprocess it
+To get the PASCAL VOC data and preprocess:
 
 1. Download the data to directory `YouOnlyLookOnce-TF2.0/data` by following instruction in it
 
@@ -10,8 +10,8 @@ To get the PASCAL VOC data and preprocess it
 `python preprocess_pascal_voc.py`
 to extract labels and bounding boxes, which will be stored in `YouOnlyLookOnce-TF2.0/data/`
 
-## Coco 2014
-To get coco data and preprocess it
+## Coco 2017
+To get coco data and preprocess:
 
 1. Build file directory
 * mkdir `YouOnlyLookOnce-TF2.0/data/coco/`
@@ -19,9 +19,9 @@ To get coco data and preprocess it
 * mkdir `YouOnlyLookOnce-TF2.0/data/coco/images`
 
 2. File Download
-* Download coco **2014 Train images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
-* Download coco **2014 Val images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
-* Download coco **2014 Train/Val annotations**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/annotations`
+* Download coco **2017 Train images**, and `tar xf archive.tar.xz` in `YouOnlyLookOnce-TF2.0/data/coco/images`
+* Download coco **2017 Val images**, and `tar xf archive.tar.xz` in `YouOnlyLookOnce-TF2.0/data/coco/images`
+* Download coco **2017 Train/Val annotations**, and `tar xf archive.tar.xz` in `YouOnlyLookOnce-TF2.0/data/coco/annotations`
 * Move **coco.name** to `YouOnlyLookOnce-TF2.0/data/coco/`
 
 Now the file structure should look like this: \
@@ -32,12 +32,12 @@ Now the file structure should look like this: \
   --data-|
          \-coco-|
                 |-annotations-|
-                              |-instance_train2014.json
-                              \-instance_val2014.json
+                              |-instance_train2017.json
+                              \-instance_val2017.json
                 |
                 |-images-|
-                         |-train2014/
-                         |-val2014/
+                         |-train2017/
+                         |-val2017/
                 |
                 \-coco.names
                      

@@ -16,7 +16,7 @@ def main():
 
     if flag == True:
 
-        flag, data = yolo.save(data, "../data/coco/images/val2014/", ".jpg", "../data/", "test_coco.txt")
+        flag, data = yolo.save(data, "../data/coco/images/val2017/", ".jpg", "../data/", "test_coco.txt")
 
     else:
         print("COCO Testing Data Parsing Result : {}, msg : {}".format(flag, data))
@@ -28,7 +28,7 @@ def main():
 
     if flag == True:
 
-        flag, data = yolo.save(data, "../data/coco/images/train2014/", ".jpg", "../data/", "train_coco.txt")
+        flag, data = yolo.save(data, "../data/coco/images/train2017/", ".jpg", "../data/", "train_coco.txt")
 
     else:
         print("COCO Training Data Parsing Result : {}, msg : {}".format(flag, data))

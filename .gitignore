@@ -28,3 +28,4 @@ tmp/*
 data/test_voc.txt
 data/train_voc.txt
 *.txt
+data/coco_2014.tar.xz
