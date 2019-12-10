@@ -22,6 +22,7 @@ To get coco data and preprocess it
 * Download coco **2014 Train images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
 * Download coco **2014 Val images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
 * Download coco **2014 Train/Val annotations**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/annotations`
+* Move **coco.name** to `YouOnlyLookOnce-TF2.0/data/coco/`
 
 Now the file structure should look like this: \
 
