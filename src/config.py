@@ -73,5 +73,3 @@ class_names = (
     'hair drier',
     'toothbrush'
 )
-
-

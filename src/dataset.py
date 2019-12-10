@@ -76,7 +76,8 @@ class Dataset(object):
         :return: a 3D array of size [grid_num, grid_num, 30], where each cell has a gt vector of size 30 containing
         [x, y, w, h, confidence] * 2 + one-hot vector of 20 classes
         """
-        target = np.zeros((self.grid_num, self.grid_num, 30))
+        num_classes = len(cfg.class_names)
+        target = np.zeros((self.grid_num, self.grid_num, num_classes))
         cell_size = 1. / self.grid_num
         wh = (boxes[:, 2:] - boxes[:, 0:2])
         cxcy = (boxes[:, 2:] + boxes[:, 0:2]) / 2
