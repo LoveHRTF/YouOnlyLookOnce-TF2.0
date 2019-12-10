@@ -18,7 +18,7 @@ def train(model, dataset):
 
     for i in range(dataset.num_batch_per_epoch):
         start_time = time.time()
-        images, labels = dataset.batch()
+        images, labels, _ = dataset.batch()
         
         # Gradient tape
         with tf.GradientTape() as tape:

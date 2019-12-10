@@ -10,6 +10,7 @@ import numpy as np
 import cv2
 
 # Class and functions
+from eval import eval
 from train import train
 from test import test
 from dataset import Dataset
@@ -24,7 +25,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 # Input arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('--num-epochs', type=int, default=400)
-parser.add_argument('--mode', type=str, default='train', help='Can be "train" or "test" or "visualize"')
+parser.add_argument('--mode', type=str, default='train', help='Can be "train" or "test" or "visualize" or "eval" ')
 parser.add_argument('--restore', action='store_true',
                     help='Use this flag if you want to resuming training from the latest-saved checkpoint')
 parser.add_argument('--visualize-number', type=int, default=128, help='Number of images generate when in visualize mode')
@@ -58,6 +59,10 @@ def main():
         print("============ Start Testing ============")                                # Test
         test_loss = test(model, test_data)
         print("Avg_test_loss: ", float(test_loss))
+
+    elif args.mode == 'eval':
+        imageset = ('VOC2007', 'test')
+        eval(imageset)
     
     # Visualization, 
     elif args.mode == 'visualize':

@@ -12,6 +12,7 @@ data/VOCdevkit/
 checkpoints/checkpoint
 checkpoints/ckpt*
 *.tar
+evaluation
 
 __pycache__
 test.jpg

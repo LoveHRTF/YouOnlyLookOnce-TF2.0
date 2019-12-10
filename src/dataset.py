@@ -67,7 +67,7 @@ class Dataset(object):
         # img = self.sub_mean(img, self.mean)
         img = cv2.resize(img, (self.image_size, self.image_size))
         target = self.encode(boxes, labels)
-        return img, target
+        return img, target, fname
 
     def encode(self, boxes, labels):
         """
@@ -244,17 +244,18 @@ class Dataset(object):
             self.shuffle_idx = np.random.permutation(self.total_samples) if self.train else np.arange(self.total_samples)
             self.record_point = 0
 
-        images, targets = [], []
+        images, targets, fnames = [], [], []
         idxs = self.shuffle_idx[self.record_point * self.batch_size: (self.record_point + 1) * self.batch_size]
         for idx in idxs:
-            image, target = self.parse_data(idx)
+            image, target, fname = self.parse_data(idx)
             images.append(image)
             targets.append(target)
+            fnames.append(fname)
         images = np.asarray(images, dtype=np.float32)
         targets = np.asarray(targets, dtype=np.float32)
 
         self.record_point += 1
-        return images, targets
+        return images, targets, fnames
 
 
 if __name__ == '__main__':
@@ -262,6 +263,6 @@ if __name__ == '__main__':
     # To get test data, pass another param train=False to Dataset constructor
     dataset = Dataset(cfg.common_params, cfg.dataset_params['train_file'])
     for i in range(100):
-        images, targets = dataset.batch()
+        images, targets, _ = dataset.batch()
         print(targets[0, :, :, 0:5])
         print(images.shape, targets.shape)
