@@ -28,7 +28,6 @@ parser.add_argument('--num-epochs', type=int, default=400)
 parser.add_argument('--mode', type=str, default='train', help='Can be "train" or "test" or "visualize" or "eval" ')
 parser.add_argument('--restore', action='store_true',
                     help='Use this flag if you want to resuming training from the latest-saved checkpoint')
-parser.add_argument('--learn-rate', type=float, default=2e-4)
 parser.add_argument('--visualize-number', type=int, default=128, help='Number of images generate when in visualize mode')
 args = parser.parse_args()
 
@@ -43,9 +42,6 @@ def main():
     if args.restore or args.mode == 'test' or args.mode=='visualize':
         checkpoint.restore(manager.latest_checkpoint)                                   # restores the latest checkpoint
         print("Load checkpoint : ", manager.latest_checkpoint)
-
-    # Apply learning rate
-    model.learning_rate = args.learning_rate
 
     # Train and test
     if args.mode == 'train':
