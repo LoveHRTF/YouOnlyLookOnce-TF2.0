@@ -1,6 +1,6 @@
 common_params = {
     'image_size': 448,
-    'batch_size': 42,
+    'batch_size': 64,
     'output_size': 7,
     'num_steps': 450000,
     'boxes_per_cell': 2,
@@ -12,8 +12,8 @@ common_params = {
 }
 
 dataset_params = {
-    'train_file': '../data/train.txt',
-    'test_file': '../data/test.txt'
+    'train_file': '../data/train_coco.txt',
+    'test_file': '../data/test_coco.txt'
 }
 
 path_params = {
@@ -21,10 +21,39 @@ path_params = {
 }
 
 class_names = (
-    'aeroplane', 'bicycle', 'bird', 'boat', 'bottle',
-    'bus', 'car', 'cat', 'chair', 'cow', 'diningtable',
-    'dog', 'horse', 'motorbike', 'person', 'pottedplant',
-    'sheep', 'sofa', 'train', 'tvmonitor',
+    'person',
+    'bicycle',
+    'car',
+    'motorcycle',
+    'airplane',
+    'bus',
+    'train',
+    'truck',
+    'boat',
+    'traffic light',
+    'fire hydrant',
+    'stop sign',
+    'parking meter',
+    'bench',
+    'bird',
+    'cat',
+    'dog',
+    'horse',
+    'sheep',
+    'cow',
+    'elephant',
+    'bear',
+    'zebra',
+    'giraffe',
+    'backpack',
+    'umbrella',
+    'handbag',
+    'tie',
+    'suitcase',
+    'frisbee',
+    'skis',
+    'snowboard',
+    'sports ball',
     'kite',
     'baseball bat',
     'baseball glove',

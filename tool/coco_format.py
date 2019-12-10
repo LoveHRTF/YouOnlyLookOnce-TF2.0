@@ -91,12 +91,12 @@ class COCO:
             printProgressBar(0, progress_length, prefix='\nCOCO Parsing:'.ljust(15), suffix='Complete', length=40)
 
             # Loop over all data
-            cnt = 0
+            # cnt = 0
             for anno in json_data["annotations"]:
-                if cnt == 500:
-                    break
-                else:
-                    cnt += 1
+                # if cnt == 500:
+                #     break
+                # else:
+                #     cnt += 1
 
                 image_id = anno["image_id"]
                 cls_id = anno["category_id"]

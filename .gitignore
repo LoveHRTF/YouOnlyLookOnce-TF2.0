@@ -27,3 +27,4 @@ tmp/*
 !tmp/README.md
 data/test_voc.txt
 data/train_voc.txt
+*.txt

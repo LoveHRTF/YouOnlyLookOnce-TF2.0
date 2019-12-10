@@ -45,7 +45,7 @@ def visualization(model, img, is_path=True, is_store=True, storage_folder='defau
         img_name = img_name[-1]
     else:
         img_ = img
-
+        
     h, w, _ = img_.shape
     # resize origin image
     image_size = int(cfg.common_params['image_size'])
