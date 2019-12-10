@@ -12,7 +12,7 @@ def main():
     # Generate test.txt
     coco = COCO()
     yolo = YOLO(os.path.abspath("../data/coco/coco.names"))
-    flag, data = coco.parse("../data/coco/annotations/instances_val2014.json")
+    flag, data = coco.parse("../data/coco/annotations/instances_val2017.json")
 
     if flag == True:
 
@@ -24,7 +24,7 @@ def main():
     # Generate train.txt
     coco = COCO()
     yolo = YOLO(os.path.abspath("../data/coco/coco.names"))
-    flag, data = coco.parse("../data/coco/annotations/instances_train2014.json")
+    flag, data = coco.parse("../data/coco/annotations/instances_train2017.json")
 
     if flag == True:
 
