@@ -65,7 +65,12 @@ Currently under construction
         \- TBD
 ```
 
+### Trained Model
 
+Trained models were provided in Google Drive. To use the model trained on PASCAL-VOC dataset with 20 classes of objects, you will need to switch to branch `dataset-pascal-voc`. Otherwise use `master` branch for using the model trained on COCO 2017 with 80 classes of objects.
+
+* Model on PASCAL-VOC 2012 and 2014 for 400 epochs: [here](https://drive.google.com/drive/folders/1JxkL6rAFiH_MAmWPon3pc1w_PJXzEN9f?usp=sharing)
+* Model on COCO 2017 for 400 epochs: [TBD]()
 
 ## 1. Data Gather and Pre-process ()
 
@@ -76,37 +81,37 @@ Currently under construction
 ### 1.2. Using PASCAL VOC 2012 and 2007
 
 ### 1.2.1. Data Download and Extraction
-Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
+Under dir ~/YouOnlyLookOnce-TF2.0/src/ 
 
-Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/data/README.md) \
+Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/data/README.md)
 This step will download and extract the PASCAL VOC 2012 and 2007 datasets
 
 ### 1.2.2. Re-scale and Coordinate Transformation
-Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
+Under dir ~/YouOnlyLookOnce-TF2.0/src/ 
 
-Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/tool/README.md). \
+Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/tool/README.md).
 This step will generate path for training data `train.txt` and `test.txt`
 
 
 
 ## 2. Train
-Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
+Under dir ~/YouOnlyLookOnce-TF2.0/src/ 
 
 Test outputs will be generated every time when model was auto saved (per 20 epochs), and located in ` /YouOnlyLookOnce-TF2.0/tmp/epoch_n`
 
 ### 2.1. Train a new model
-To train from scratch, model checkpoints will be stored in /YouOnlyLookOnce-TF2.0/checkpoints/: \
+To train from scratch, model checkpoints will be stored in /YouOnlyLookOnce-TF2.0/checkpoints/:
 `python main.py` 
 ### 2.2. Restore from a checkpoint
-To resume training from the latest saved checkpoint: \
+To resume training from the latest saved checkpoint:
 `python main.py restore` 
 
 
 
 ## 3. Test
-Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
+Under dir ~/YouOnlyLookOnce-TF2.0/src/ 
 
-To test the latest checkpoint on test set: \
+To test the latest checkpoint on test set:
 `python main.py --mode=test`
 
 
