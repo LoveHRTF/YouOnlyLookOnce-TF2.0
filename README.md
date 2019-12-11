@@ -5,7 +5,7 @@ This is the final project for CSCI-1470 Deep Learning @ Brown University
 
 Currently under construction 
 
-## Main File Structure
+## File Structure
 ### Code
 ```
 ~\YouOnlyLookOnce-TF2.0
@@ -29,9 +29,14 @@ Currently under construction
          |-voc_label.py
          |-train.txt
          |-test.txt
-         \-VOCdevkit-|
-                     |-VOC2007
-                     \-VOC2012
+         |-VOCdevkit (Using PASCAL VOC)-|
+         |                              |-VOC2007/
+         |                              \-VOC2012/
+         \-coco (Using COCO 2017)-|
+                                  |-annotations/
+                                  \-images-|
+                                           |-train2017/
+                                           \-val2017/
                      
   --tool-|
          \-preprocess_pascal_voc.py
@@ -52,19 +57,25 @@ Currently under construction
         \- TBD
 ```
 
-## 1. Data Gather and Pre-process (PASCAL VOC 2012 and 2007)
+## 1. Data Gather and Pre-process ()
 
-### 1.1. Data Download and Extraction
+### 1.1. Using COCO 2017
+
+* Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/tree/master/tool#coco-2017)
+
+### 1.2. Using PASCAL VOC 2012 and 2007
+### 1.2.1. Data Download and Extraction
 Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 
 Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/data/README.md) \
 This step will download and extract the PASCAL VOC 2012 and 2007 datasets
 
-### 1.2. Re-scale and Coordinate Transformation
+### 1.2.2. Re-scale and Coordinate Transformation
 Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 
 Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/tool/README.md). \
 This step will generate path for training data `train.txt` and `test.txt`
+
 
 ## 2. Train
 Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
