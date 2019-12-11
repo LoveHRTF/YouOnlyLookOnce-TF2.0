@@ -53,26 +53,26 @@ def test(model, dataset, log_result=True):
             print("Test Batch ", dataset.record_point-1, "/", dataset.num_batch_per_epoch, 
                 " | avg_loss ", loss_str[0:8], " | test_speed ", speed_str[0:5], "images/sec")
 
-    if log_result:
-        for i, fname in enumerate(fnames):
-            img = cv2.imread(fname)
-            h, w, _ = img.shape
-            boxes, cls_indexs, probs = decoder(predictions[i])
+        if log_result:
+            for i, fname in enumerate(fnames):
+                img = cv2.imread(fname)
+                h, w, _ = img.shape
+                boxes, cls_indexs, probs = decoder(predictions[i])
 
-            for j, box in enumerate(boxes):
-                x1 = int(box[0] * w)
-                y1 = int(box[1] * h)
-                x2 = int(box[2] * w)
-                y2 = int(box[3] * h)
-                cls_index = int(cls_indexs[j])
-                prob = probs[j]
-                class_name = VOC_CLASSES[cls_index]
+                for j, box in enumerate(boxes):
+                    x1 = int(box[0] * w)
+                    y1 = int(box[1] * h)
+                    x2 = int(box[2] * w)
+                    y2 = int(box[3] * h)
+                    cls_index = int(cls_indexs[j])
+                    prob = probs[j]
+                    class_name = VOC_CLASSES[cls_index]
 
-                image_id = fname.split('/')[-1].split('.')[0]
-                filename = os.path.join(result_dir, class_name + '.txt')
-                with open(filename, mode='a') as file:
-                    content = image_id + ' ' + str(prob) + ' ' + str(int(x1)) + ' ' + str(int(y1)) + ' ' + str(
-                        int(x2)) + ' ' + str(int(y2)) + '\n'
-                    file.write(content)
+                    image_id = fname.split('/')[-1].split('.')[0]
+                    filename = os.path.join(result_dir, class_name + '.txt')
+                    with open(filename, mode='a') as file:
+                        content = image_id + ' ' + str(prob) + ' ' + str(int(x1)) + ' ' + str(int(y1)) + ' ' + str(
+                            int(x2)) + ' ' + str(int(y2)) + '\n'
+                        file.write(content)
 
     return loss_avg

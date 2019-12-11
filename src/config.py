@@ -13,7 +13,7 @@ common_params = {
 
 dataset_params = {
     'train_file': '../data/train.txt',
-    'test_file': '../data/train.txt'
+    'test_file': '../data/test.txt'
 }
 
 path_params = {
@@ -21,8 +21,8 @@ path_params = {
 }
 
 class_names = (
-    'Aeroplane', 'Bicycle', 'Bird', 'Boat', 'Bottle', 
-    'Bus', 'Car', 'Cat', 'Chair', 'Cow', 'Diningtable', 
-    'Dog', 'Horse', 'Motorbike', 'Person', 'Pottedplant', 
-    'Sheep', 'Sofa', 'Train', 'TVmonitor'
+    'aeroplane', 'bicycle', 'bird', 'boat', 'bottle',
+    'bus', 'car', 'cat', 'chair', 'cow', 'diningtable',
+    'dog', 'horse', 'motorbike', 'person', 'pottedplant',
+    'sheep', 'sofa', 'train', 'tvmonitor'
 )
