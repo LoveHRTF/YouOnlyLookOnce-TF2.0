@@ -20,14 +20,14 @@ To get coco data and preprocess:
 
 2. File Download
 
-The download link for Coco 2017 dataset can be found [here](http://cocodataset.org/#download) \
+The download link for Coco 2017 dataset can be found [here](http://cocodataset.org/#download) /
 
 * Download coco **2017 Train images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
 * Download coco **2017 Val images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
 * Download coco **2017 Train/Val annotations**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/annotations`
 * Move **coco.name** to `YouOnlyLookOnce-TF2.0/data/coco/`
 
-Now the file structure should look like this: \
+Now the file structure should look like this: /
 
 ```
 ~\YouOnlyLookOnce-TF2.0
