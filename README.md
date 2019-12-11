@@ -5,6 +5,8 @@ This is the final project for CSCI-1470 Deep Learning @ Brown University
 
 Currently under construction 
 
+
+
 ## File Structure
 ### Code
 ```
@@ -39,6 +41,8 @@ Currently under construction
                                            \-val2017/
                      
   --tool-|
+         |-preprocess_coco.py
+         |-coco_format.py
          \-preprocess_pascal_voc.py
 ```
 
@@ -50,12 +54,18 @@ Currently under construction
                 |-ckpt-xx.data-00000-of-00002
                 \-ckpt-xx.data-00001-of-00002
   
+  --evaluation-|
+               \- TBD
+  
   --tmp-|
-        \- TBD
+        |-default_folder
+        \-epoch_x
   
   --doc-|
         \- TBD
 ```
+
+
 
 ## 1. Data Gather and Pre-process ()
 
@@ -64,6 +74,7 @@ Currently under construction
 * Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/tree/master/tool#coco-2017)
 
 ### 1.2. Using PASCAL VOC 2012 and 2007
+
 ### 1.2.1. Data Download and Extraction
 Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 
@@ -75,6 +86,7 @@ Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 
 Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/tool/README.md). \
 This step will generate path for training data `train.txt` and `test.txt`
+
 
 
 ## 2. Train
@@ -89,11 +101,15 @@ To train from scratch, model checkpoints will be stored in /YouOnlyLookOnce-TF2.
 To resume training from the latest saved checkpoint: \
 `python main.py restore` 
 
+
+
 ## 3. Test
 Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 
 To test the latest checkpoint on test set: \
 `python main.py --mode=test`
+
+
 
 ## 4. Evaluation
 
