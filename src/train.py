@@ -52,6 +52,8 @@ def train(model, dataset, train_summary_writer, epoch):
                 " | train_speed", speed_str[0:5], "images/sec")
 
             with train_summary_writer.as_default():
-                tf.summary.scalar('train_loss', loss, step=i * (epoch + 1))
+                tf.summary.scalar('train_loss',
+                                    loss,
+                                    step=(i + dataset.num_batch_per_epoch * (epoch + 1)))
 
     return loss_avg
