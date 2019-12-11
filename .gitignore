@@ -30,3 +30,6 @@ data/train_voc.txt
 *.txt
 data/*
 !data/README.md
+checkpoints_old/
+src/logs/
+tmp_old/

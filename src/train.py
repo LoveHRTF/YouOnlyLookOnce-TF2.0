@@ -7,10 +7,15 @@ Param inputs: Model object and dataset object
 import config as cfg
 import tensorflow as tf
 import time
+import datetime
 
-def train(model, dataset):
+def train(model, dataset, train_summary_writer, epoch):
     '''
     Train model for one epoch. 
+    :param -model
+    :param -dataset
+    :param -train_summary_writer: tensorboard writer
+    :param -epoch: current number of epoch for tensorboard log
     '''
     
     loss_sum = 0
@@ -36,11 +41,17 @@ def train(model, dataset):
         loss_sum += loss
         loss_avg = loss_sum / (i+1)
 
-        loss_str = str(float(loss_avg))
+        avg_loss_str = str(float(loss_avg))
+        batch_loss_str = str(float(loss))
         speed_str = str(image_speed)
 
         if i % 50 == 0:
             print("Batch ", dataset.record_point-1, "/", dataset.num_batch_per_epoch, 
-                " | avg_loss ", loss_str[0:8], " | train_speed", speed_str[0:5], "images/sec")
+                " | avg_loss ", avg_loss_str[0:8],
+                " | batch_loss", batch_loss_str[0:8], 
+                " | train_speed", speed_str[0:5], "images/sec")
 
-    pass
+            with train_summary_writer.as_default():
+                tf.summary.scalar('train_loss', loss, step=i * (epoch + 1))
+
+    return loss_avg
