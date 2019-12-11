@@ -69,14 +69,14 @@ def visualization(model, img, is_path=True, is_store=True, storage_folder='defau
             start_point = (x1, y1)
             end_point = (x2, y2)
             color = (0, 255, 0)
-            thickness = 2
-            fontScale = 1
+            thickness = 1
+            fontScale = 0.85
 
             image = cv2.rectangle(img_, start_point, end_point, color, thickness)
             # print class name (a green text)
             class_name = cfg.class_names[int(class_idx[i])]
-            score = str(scores[i])
-            title = class_name + ':' + score[0:6]
+            score = str(min(float(1.0000), scores[i]))
+            title = class_name + ':' + score[0:5]
             image = cv2.putText( 
                 image, title, start_point, cv2.FONT_HERSHEY_SIMPLEX, 
                 fontScale, color, thickness, cv2.LINE_AA)
