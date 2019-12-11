@@ -113,7 +113,8 @@ To test the latest checkpoint on test set: \
 
 ## 4. Evaluation
 
-* TBD
+To evaluate the model, we have to test the model first and get the test results logged. After testing, there should be a directory ~/YouOnlyLookOnce-TF2.0/evaluation, under which we have the test result of each class. Then run the command to evaluate: \
+`python main.py --mode=eval`
 
 ## 5. Visualization
 
