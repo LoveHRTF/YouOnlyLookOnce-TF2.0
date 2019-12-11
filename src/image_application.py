@@ -7,7 +7,6 @@ import argparse
 import tensorflow as tf
 import cv2
 import os
-from datetime import datetime
 # Class and functions
 from model import Model
 from visualize import visualization

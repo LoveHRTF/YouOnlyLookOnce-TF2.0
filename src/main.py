@@ -15,7 +15,6 @@ from train import train
 from test import test
 from dataset import Dataset
 from model import Model
-import visualize
 from visualize import visualization, generate_prediction
 # Configration file
 import config as cfg
@@ -28,7 +27,7 @@ parser.add_argument('--num-epochs', type=int, default=400)
 parser.add_argument('--mode', type=str, default='train', help='Can be "train" or "test" or "visualize" or "eval" ')
 parser.add_argument('--restore', action='store_true',
                     help='Use this flag if you want to resuming training from the latest-saved checkpoint')
-parser.add_argument('--visualize-number', type=int, default=128, help='Number of images generate when in visualize mode')
+parser.add_argument('--visualize-number', type=int, default=256, help='Number of images generate when in visualize mode')
 args = parser.parse_args()
 
 def main():
@@ -64,7 +63,7 @@ def main():
         imageset = ('VOC2007', 'test')
         eval(imageset)
     
-    # Visualization, 
+    # Visualization
     elif args.mode == 'visualize':
         generate_prediction(model, cfg.dataset_params['test_file'], args.visualize_number)
 
