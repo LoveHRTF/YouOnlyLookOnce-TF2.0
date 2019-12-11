@@ -95,9 +95,13 @@ Under dir ~/YouOnlyLookOnce-TF2.0/src/  \
 To test the latest checkpoint on test set: \
 `python main.py --mode=test`
 
-## 4. Visualization
+## 4. Evaluation
 
-### 4.1. Real-time Video Detection
+* TBD
+
+## 5. Visualization
+
+### 5.1. Real-time Video Detection
 We have developed a simple script to visualize the detection, a webcam is required. \
 To perform realtime detection: \
 
@@ -106,7 +110,7 @@ To perform realtime detection: \
 * Run `python video_application.py` under dir `~/YouOnlyLookOnce-TF2.0/src/`
 * The realtime video will be shown on screen
 
-### 4.2. Image Detection
+### 5.2. Image Detection
 
 To perform detection on a list of image, we have provided a simple script to read the candidate image, perform detection, and sotre the file in local drive. \
 
