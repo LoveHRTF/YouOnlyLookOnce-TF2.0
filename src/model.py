@@ -157,7 +157,7 @@ class Model(tf.keras.Model):
         Return: Class prob loss. Tensor of shape [1,]
         """
         # Classification Loss
-        idx     = tf.range(start=10, limit=30, delta=1)
+        idx     = tf.range(start=10, limit=90, delta=1)
         p       = tf.gather(logits, indices=idx, axis=3)
         p_hat   = tf.gather(labels, indices=idx, axis=3)
         loss    = tf.reduce_sum(tf.math.square(p - p_hat))

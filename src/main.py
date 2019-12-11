@@ -49,10 +49,10 @@ def main():
         for epoch in range(args.num_epochs):                                            # Train
             print("============ Epoch ",epoch, "============")
             train(model, train_data)
-            if epoch % 5 == 0:                                                          # Save checkpoint
-                manager.save()
-                folder_name = 'epoch_' + str(epoch) + '/'
-                generate_prediction(model, cfg.dataset_params['test_file'], args.visualize_number, folder_name)
+            # if epoch % 1 == 0:                                                          # Save checkpoint
+            manager.save()
+            folder_name = 'epoch_' + str(epoch) + '/'
+            generate_prediction(model, cfg.dataset_params['test_file'], args.visualize_number, folder_name)
 
     elif args.mode == 'test':
         test_data = Dataset(cfg.common_params, cfg.dataset_params['test_file'])         # Testing Data Preprocess 
