@@ -9,7 +9,7 @@ import config as cfg
 
 class Model(tf.keras.Model):
 
-    def __init__(self):
+    def __init__(self, is_train=True):
 
         super(Model, self).__init__()
 
@@ -93,14 +93,13 @@ class Model(tf.keras.Model):
         # Dense Layer 1, (4096, 0)
         self.model.add(Dense(4096))
         self.model.add(LeakyReLU(alpha=0.1))
-        
+
         # Dropout when train
-        self.model.add(Dropout(0.5))
+        if is_train:
+            self.model.add(Dropout(0.5))
 
         # Dense Layer 2, (7, 7, 30)
         self.model.add(Dense(4410, activation='linear'))
-
-
 
         # Reshape
         self.model.add(Reshape([7, 7, 90]))

@@ -31,7 +31,7 @@ args = parser.parse_args()
 def main():
 
     # Read model from checkpoint
-    model = Model()
+    model = Model(is_train=False)
     checkpoint = tf.train.Checkpoint(model=model)
     manager = tf.train.CheckpointManager(checkpoint, cfg.path_params['checkpoints'], max_to_keep=20)
     checkpoint.restore(manager.latest_checkpoint)   
