@@ -33,7 +33,12 @@ args = parser.parse_args()
 def main():
 
     # Load model
-    model = Model()                                                                     # Create new model
+    if args.mode == 'train':
+        model = Model()                                                                 # Create new model
+    else:
+        model = Model(is_train=False)
+
+    # Checkpoint management
     checkpoint = tf.train.Checkpoint(model=model)
     manager = tf.train.CheckpointManager(checkpoint, cfg.path_params['checkpoints'], max_to_keep=20)
 
