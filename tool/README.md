@@ -40,7 +40,7 @@ Now the file structure should look like this:
                 |
                 |-images-|
                          |-train2017/
-                         |-val2017/
+                         \-val2017/
                 |
                 \-coco.names
                      
