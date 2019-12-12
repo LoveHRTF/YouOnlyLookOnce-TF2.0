@@ -50,6 +50,7 @@ def main():
     # Train and test
     if args.mode == 'train':
         train_data = Dataset(cfg.common_params, cfg.dataset_params['train_file'])       # Training Data Preprocess 
+        test_data = Dataset(cfg.common_params, cfg.dataset_params['test_file'])         # Testing Data Preprocess 
         for epoch in range(args.num_epochs):                                            # Train
             print("============ Epoch ",epoch, "============")
             train(model, train_data)
@@ -57,6 +58,8 @@ def main():
                 manager.save()
                 folder_name = 'epoch_' + str(epoch) + '/'
                 generate_prediction(model, cfg.dataset_params['test_file'], args.visualize_number, folder_name)
+                test_loss = test(model, test_data)
+                print("Avg_test_loss: ", float(test_loss))
 
     elif args.mode == 'test':
         test_data = Dataset(cfg.common_params, cfg.dataset_params['test_file'])         # Testing Data Preprocess 

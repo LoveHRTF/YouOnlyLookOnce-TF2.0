@@ -17,7 +17,7 @@ class Model(tf.keras.Model):
 
         # Update Parameters and optimizer
         self.batch_size = cfg.common_params['batch_size']
-        self.learning_rate = 2e-4
+        self.learning_rate = 1e-4
         self.optimizer = tf.keras.optimizers.Adam(self.learning_rate)
 
         # Trainable Parameters
