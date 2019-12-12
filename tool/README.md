@@ -25,7 +25,7 @@ The download link for Coco 2017 dataset can be found [here](http://cocodataset.o
 * Download coco **2017 Train images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
 * Download coco **2017 Val images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
 * Download coco **2017 Train/Val annotations**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/annotations`
-* Move **coco.name** to `YouOnlyLookOnce-TF2.0/data/coco/`
+* Move **coco.names** to `YouOnlyLookOnce-TF2.0/data/coco/`
 
 Now the file structure should look like this: 
 
