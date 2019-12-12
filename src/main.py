@@ -59,7 +59,7 @@ def main():
             print("============ Epoch ",epoch, "============")
             train(model, train_data, train_summary_writer, epoch)
 
-            if epoch % 2 == 0:                                                          # Save checkpoint every other epoch
+            if epoch % 1 == 0:                                                          # Save checkpoint every other epoch
                 manager.save()
                 folder_name = 'epoch_' + str(epoch) + '/'
                 generate_prediction(model, cfg.dataset_params['test_file'], args.visualize_number, folder_name)
