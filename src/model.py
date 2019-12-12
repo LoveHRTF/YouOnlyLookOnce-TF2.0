@@ -17,7 +17,7 @@ class Model(tf.keras.Model):
 
         # Update Parameters and optimizer
         self.batch_size = cfg.common_params['batch_size']
-        self.learning_rate = 3e-4
+        self.learning_rate = 2e-4
         self.optimizer = tf.keras.optimizers.Adam(self.learning_rate)
 
         # Trainable Parameters
@@ -90,8 +90,8 @@ class Model(tf.keras.Model):
         # Flatten Layer 1
         self.model.add(Flatten())
 
-        # Dense Layer 1, (4096, 0)
-        self.model.add(Dense(4096))
+        # Dense Layer 1, (8192, 0)
+        self.model.add(Dense(8192))
         self.model.add(LeakyReLU(alpha=0.1))
 
         # Dropout when train
