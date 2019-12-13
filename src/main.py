@@ -8,6 +8,7 @@ import tensorflow as tf
 import os
 import numpy as np
 import cv2
+import datetime
 
 # Class and functions
 from eval import eval
@@ -49,17 +50,28 @@ def main():
 
     # Train and test
     if args.mode == 'train':
+
+        # Tensorboard for testing
+        current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        train_log_dir = 'logs/gradient_tape/' + current_time + '/train'
+        train_summary_writer = tf.summary.create_file_writer(train_log_dir)
+
+        # Train Loop
         train_data = Dataset(cfg.common_params, cfg.dataset_params['train_file'])       # Training Data Preprocess 
         test_data = Dataset(cfg.common_params, cfg.dataset_params['test_file'])         # Testing Data Preprocess 
+        
         for epoch in range(args.num_epochs):                                            # Train
             print("============ Epoch ",epoch, "============")
-            train(model, train_data)
+            train(model, train_data, train_summary_writer, epoch)
             if epoch % 5 == 0:                                                          # Save checkpoint
+                # Test
+                test_loss = test(model, test_data)
+                print("Avg_test_loss: ", float(test_loss))
+                # Visualize
                 manager.save()
                 folder_name = 'epoch_' + str(epoch) + '/'
                 generate_prediction(model, cfg.dataset_params['test_file'], args.visualize_number, folder_name)
-                test_loss = test(model, test_data)
-                print("Avg_test_loss: ", float(test_loss))
+
 
     elif args.mode == 'test':
         test_data = Dataset(cfg.common_params, cfg.dataset_params['test_file'])         # Testing Data Preprocess 
