@@ -8,7 +8,7 @@ This is the final project for [CSCI-1470 Deep Learning](https://cs.brown.edu/cou
 Credits:
 * [LoveHRTF](https://github.com/LoveHRTF), **20' ScM.**
 * [Gengg](https://github.com/Genggg), **20' ScM.**
-* [SHIXINGLIU](https://github.com/SHIXINLIU), **20' ScM.**
+* [SHIXINLIU](https://github.com/SHIXINLIU), **20' ScM.**
 * [ZeyuRuan](https://github.com/ZeyuRuan), **20' ScM.**
 
 Currently under construction 
