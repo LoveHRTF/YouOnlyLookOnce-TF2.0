@@ -85,6 +85,8 @@ class Dataset(object):
         for i in range(cxcy.shape[0]):
             _cxcy = cxcy[i]
             ij = (np.ceil(_cxcy / cell_size) - 1).astype(np.int32)
+            if ij[0] >= self.grid_num or ij[1] >= self.grid_num:
+                continue
             target[ij[1], ij[0], 4] = 1
             target[ij[1], ij[0], 9] = 1
             target[ij[1], ij[0], int(labels[i]) + 9] = 1
