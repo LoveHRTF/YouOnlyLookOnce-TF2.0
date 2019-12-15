@@ -99,7 +99,10 @@ def voc_eval(detpath, annopath, imagesetfile, classname, eval_dir, ovthresh=0.5,
     confidence = np.array([float(x[1]) for x in splitlines])
     BB = np.array([[float(z) for z in x[2:]] for x in splitlines])
     sorted_ind = np.argsort(-confidence)
-    BB = BB[sorted_ind, :]
+    if len(sorted_ind) == 0:
+        BB = []
+    else:
+        BB = BB[sorted_ind, :]
     image_ids = [image_ids[x] for x in sorted_ind]
 
     nd = len(image_ids)
