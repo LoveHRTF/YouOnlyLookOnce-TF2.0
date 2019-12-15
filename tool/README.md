@@ -25,17 +25,20 @@ The download link for Coco 2017 dataset can be found [here](http://cocodataset.o
 * Download coco **2017 Train images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
 
 `wget http://images.cocodataset.org/zips/train2017.zip`
+
 `unzip train2017.zip`
 
 
 * Download coco **2017 Val images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
 
 `wget http://images.cocodataset.org/zips/val2017.zip`
+
 `unzip val2017.zip`
 
 * Download coco **2017 Train/Val annotations**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/annotations`
 
 `wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip`
+
 `unzip annotations_trainval2017.zip`
 
 * Move **coco.names** to `YouOnlyLookOnce-TF2.0/data/coco/`
