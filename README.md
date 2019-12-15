@@ -90,7 +90,7 @@ To start the local tensorboard server, use the following command in `~\YouOnlyLo
   --doc-\
 ```
 
-### Trained Model
+## Trained Model
 
 Trained models were provided in Google Drive. To use the model trained on PASCAL-VOC dataset with 20 classes of objects, you will need to switch to branch `dataset-pascal-voc`. Otherwise use `master` branch for using the model trained on COCO 2017 with 80 classes of objects.
 
