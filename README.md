@@ -103,7 +103,7 @@ Trained models were provided in Google Drive. To use the model trained on PASCAL
 Two trained models were provided below for both PASCAL-VOC 2007 + 2012 and COCO. Model for PASCAL-VOC was trained for around an entire day on one single __AMD RADEON VII__ GPU, and model for COCO 2017 was trained on one signle __NVIDIA RTX 2080Ti__ GPU.
 
 * Model on PASCAL-VOC 2012 and 2014 for 100 epochs: [here](https://drive.google.com/drive/folders/1JxkL6rAFiH_MAmWPon3pc1w_PJXzEN9f?usp=sharing)
-* Model on COCO 2017 for 400 epochs: [TBD]()
+* Model on COCO 2017 for 78 epochs: [here](https://drive.google.com/drive/folders/1A_eYcfKRMGKDvSPODJ3TSCWjjC4thghg?usp=sharing)
 
 
 
@@ -171,6 +171,8 @@ Note that dropout will be eliminated in test and visualization mode by using thi
 
 
 ## 4. Evaluation
+
+**Evaluation is only available in branch `dataset-pascal-voc`**
 
 To evaluate the model, we have to test the model first and get the test results logged. After testing, there should be a directory ~/YouOnlyLookOnce-TF2.0/evaluation, under which we have the test result of each class. Then run the command to evaluate: \
 `python main.py --mode=eval`
