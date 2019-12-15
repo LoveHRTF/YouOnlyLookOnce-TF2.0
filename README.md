@@ -113,13 +113,19 @@ Two trained models were provided below for both PASCAL-VOC 2007 + 2012 and COCO.
 
 __This Section Requires Using Branch `master`__
 
+`setup_coco.sh` was provided for automation. It proves a one line solution for downloading all required datasets and generates trainable files. Following command is for utilizing this file, the process may take over an hour:
+
+`bash setup_coco.sh`
+
+Manual setup is also available by using the following instructions.
+
 * Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/tree/master/tool#coco-2017)
 
 ### 1.2. Using PASCAL VOC 2012 and 2007
 
 __This Section Requires Using Branch `dataset-pascal-voc`__
 
-`setup_pascal_voc.sh` was provided for automate the process. It proves a one line solution for downloading all required datasets and generates trainable files. Following command is for utilizing this file:
+`setup_pascal_voc.sh` was provided for automation. It proves a one line solution for downloading all required datasets and generates trainable files. Following command is for utilizing this file:
 
 `bash setup_pascal_voc.sh`
 
