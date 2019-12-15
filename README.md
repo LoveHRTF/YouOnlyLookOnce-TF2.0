@@ -11,7 +11,6 @@ Credits:
 * [SHIXINLIU](https://github.com/SHIXINLIU), **20' ScM.**
 * [ZeyuRuan](https://github.com/ZeyuRuan), **20' ScM.**
 
-<!DOCTYPE html>
 <strong>
   <div style="display: inline">
     <img src="/doc/p1.jpg"
