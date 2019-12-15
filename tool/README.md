@@ -20,11 +20,24 @@ To get coco data and preprocess:
 
 2. File Download
 
-The download link for Coco 2017 dataset can be found [here](http://cocodataset.org/#download) 
+The download link for Coco 2017 dataset can be found [here](http://cocodataset.org/#download), wget was also available.
 
 * Download coco **2017 Train images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
+
+`wget http://images.cocodataset.org/zips/train2017.zip`
+`unzip train2017.zip`
+
+
 * Download coco **2017 Val images**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/images`
+
+`wget http://images.cocodataset.org/zips/val2017.zip`
+`unzip val2017.zip`
+
 * Download coco **2017 Train/Val annotations**, and unzip in `YouOnlyLookOnce-TF2.0/data/coco/annotations`
+
+`wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip`
+`unzip annotations_trainval2017.zip`
+
 * Move **coco.names** to `YouOnlyLookOnce-TF2.0/data/coco/`
 
 Now the file structure should look like this: 
