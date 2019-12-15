@@ -11,66 +11,12 @@ Credits:
 * [SHIXINLIU](https://github.com/SHIXINLIU), **20' ScM.**
 * [ZeyuRuan](https://github.com/ZeyuRuan), **20' ScM.**
 
-## Example Results
-<strong>
-  <div style="display: inline">
-    <img src="/doc/p1.jpg"
-         alt="Reslut"
-         style="float: left; margin-right: 10px;"
-         height=30%;
-         width=30%;/>
-    <img src="/doc/p2.jpg"
-         alt="Reslut"
-         style="float: left; margin-right: 10px;"
-         height=30%;
-         width=30%;/>
-    <img src="/doc/p3.jpg"
-         alt="Reslut"
-         style="float: left; margin-right: 10px;"
-         height=30%;
-         width=30%;/>
-  </div>
-</strong>
 
-<strong>
-  <div style="display: inline">
-    <img src="/doc/p4.jpg"
-         alt="Reslut"
-         style="float: left; margin-right: 10px;"
-         height=30%;
-         width=30%;/>
-    <img src="/doc/p5.jpg"
-         alt="Reslut"
-         style="float: left; margin-right: 10px;"
-         height=30%;
-         width=30%;/>
-    <img src="/doc/p6.jpg"
-         alt="Reslut"
-         style="float: left; margin-right: 10px;"
-         height=30%;
-         width=30%;/>
-  </div>
-</strong>
-
-<strong>
-  <div style="display: inline">
-    <img src="/doc/p7.jpg"
-         alt="Reslut"
-         style="float: left; margin-right: 10px;"
-         height=30%;
-         width=30%;/>
-    <img src="/doc/p8.jpg"
-         alt="Reslut"
-         style="float: left; margin-right: 10px;"
-         height=30%;
-         width=30%;/>
-    <img src="/doc/p10.jpg"
-         alt="Reslut"
-         style="float: left; margin-right: 10px;"
-         height=30%;
-         width=30%;/>
-  </div>
-</strong>
+| ----------- | ----------- | ----------- |
+| ----------- | ----------- | ----------- |
+|![](/doc/p1.jpg)|![](/doc/p2.jpg)|![](/doc/p3.jpg)
+|![](/doc/p3.jpg)|![](/doc/p5.jpg)|![](/doc/p6.jpg)
+|![](/doc/p5.jpg)|![](/doc/p8.jpg)|![](/doc/p10.jpg)
 
 
 ## Breaf and Branches
