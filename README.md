@@ -19,7 +19,7 @@ Credits:
 |![](/doc/p8.jpg)|![](/doc/p7.jpg)|![](/doc/p10.jpg)
 
 
-## Breaf and Branches
+## Brief and Branches
 
 ### `dataset-pascal-voc` 
 Original YOLO, which can be trained on __PASCAL-VOC 2007__ and __2012__ datasets with 20 classes, and outputs tensor with size \[None, 7, 7, 30] for 20 classes of objects. 
