@@ -11,7 +11,13 @@ Credits:
 * [SHIXINLIU](https://github.com/SHIXINLIU), **20' ScM.**
 * [ZeyuRuan](https://github.com/ZeyuRuan), **20' ScM.**
 
-Currently under construction 
+
+| ----------- | ----------- | ----------- |
+| ----------- | ----------- | ----------- |
+|![](/doc/p1.jpg)|![](/doc/p2.jpg)|![](/doc/p3.jpg)
+|![](/doc/p4.jpg)|![](/doc/p5.jpg)|![](/doc/p6.jpg)
+|![](/doc/p8.jpg)|![](/doc/p7.jpg)|![](/doc/p10.jpg)
+
 
 ## Breaf and Branches
 
@@ -90,7 +96,7 @@ To start the local tensorboard server, use the following command in `~\YouOnlyLo
   --doc-\
 ```
 
-### Trained Model
+## Trained Model
 
 Trained models were provided in Google Drive. To use the model trained on PASCAL-VOC dataset with 20 classes of objects, you will need to switch to branch `dataset-pascal-voc`. Otherwise use `master` branch for using the model trained on COCO 2017 with 80 classes of objects.
 
@@ -105,9 +111,25 @@ Two trained models were provided below for both PASCAL-VOC 2007 + 2012 and COCO.
 
 ### 1.1. Using COCO 2017
 
+__This Section Requires Using Branch `master`__
+
+`setup_coco.sh` was provided for automation. It proves a one line solution for downloading all required datasets and generates trainable files. Following command is for utilizing this file, the process may take over an hour:
+
+`bash setup_coco.sh`
+
+Manual setup is also available by using the following instructions.
+
 * Follow the instructions [here](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/tree/master/tool#coco-2017)
 
 ### 1.2. Using PASCAL VOC 2012 and 2007
+
+__This Section Requires Using Branch `dataset-pascal-voc`__
+
+`setup_pascal_voc.sh` was provided for automation. It proves a one line solution for downloading all required datasets and generates trainable files. Following command is for utilizing this file:
+
+`bash setup_pascal_voc.sh`
+
+Manual setup is also available by using the following instructions.
 
 ### 1.2.1. Data Download and Extraction
 Under dir ~/YouOnlyLookOnce-TF2.0/src/ 

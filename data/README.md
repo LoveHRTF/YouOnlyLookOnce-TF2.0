@@ -3,6 +3,8 @@
 ### Using Pascal VOC Data
 
 #### Download Dataset
+`cd dataset`
+
 `wget https://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar`
 
 `wget https://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar`
