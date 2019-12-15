@@ -25,7 +25,7 @@ Credits:
 Original YOLO, which can be trained on __PASCAL-VOC 2007__ and __2012__ datasets with 20 classes, and outputs tensor with size \[None, 7, 7, 30] for 20 classes of objects. 
 
 ### `master`
-Modified code for training on __COCO 2017__ dataset, and the last dense layer was increased to 8192 to compensate for extra object classes, and outputs a tensor of \[None, 7, 7, 90] for 80 classes of object.
+Modified code for training on __COCO 2017__ dataset, and the last dense layer was increased to 8192 to compensate for extra object classes, and outputs  tensor with size \[None, 7, 7, 90] for 80 classes of objects.
 
 ## Tensorboard
 Tensorboard was enabled in this project. Log files were kept in `~\YouOnlyLookOnce-TF2.0\src\logs`
