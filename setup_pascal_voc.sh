@@ -24,4 +24,4 @@ python preprocess_pascal_voc.py
 cd ../src
 
 # Start Training
-python main.py
+# python main.py
