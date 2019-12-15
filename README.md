@@ -15,7 +15,7 @@ Credits:
 | ----------- | ----------- | ----------- |
 | ----------- | ----------- | ----------- |
 |![](/doc/p1.jpg)|![](/doc/p2.jpg)|![](/doc/p3.jpg)
-|![](/doc/p4.jpg)|![](/doc/p5.jpg)|![](/doc/p6.jpg)
+|![](/doc/p4.jpg)|![](/doc/p5.jpg)|![](https://github.com/LoveHRTF/YouOnlyLookOnce-TF2.0/blob/master/doc/p6.jpg)
 |![](/doc/p7.jpg)|![](/doc/p8.jpg)|![](/doc/p10.jpg)
 
 
