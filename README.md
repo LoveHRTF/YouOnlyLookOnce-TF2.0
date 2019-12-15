@@ -14,9 +14,9 @@ Credits:
 
 | ----------- | ----------- | ----------- |
 | ----------- | ----------- | ----------- |
-|![](/doc/p10.jpg)|![](/doc/p6.jpg)|![](/doc/p3.jpg)
-|![](/doc/p8.jpg)|![](/doc/p5.jpg)|![](/doc/p2.jpg)
-|![](/doc/p7.jpg)|![](/doc/p4.jpg)|![](/doc/p1.jpg)
+|![](/doc/p10.jpg){:height="200px" width="300"}|![](/doc/p6.jpg){:height="200px" width="300"}|![](/doc/p3.jpg){:height="200px" width="300"}
+|![](/doc/p8.jpg){:height="200px" width="300"}|![](/doc/p5.jpg){:height="200px" width="300"}|![](/doc/p2.jpg){:height="200px" width="300"}
+|![](/doc/p7.jpg){:height="200px" width="300"}|![](/doc/p4.jpg){:height="200px" width="300"}|![](/doc/p1.jpg){:height="200px" width="300"}
 
 
 ## Breaf and Branches
