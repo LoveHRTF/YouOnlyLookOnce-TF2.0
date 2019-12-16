@@ -2,11 +2,11 @@
 
 # mkdir
 mkdir data/coco
-mkdir data/coco/annotations
+mkdir data/coco
 mkdir data/coco/images
 
 # Data Download and Unzip
-cd data/coco/annotations
+cd data/coco
 wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip
 
 unzip annotations_trainval2017.zip
@@ -19,7 +19,7 @@ unzip train2017.zip
 unzip val2017.zip
 
 # Move coco.names to data
-mv ../../../tool/coco.names ../../../data/
+mv ../../../tool/coco.names ../../../data/coco
 
 # Generate Label files
 cd ../../../tool
