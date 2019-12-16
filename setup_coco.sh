@@ -23,7 +23,7 @@ mv ../../../tool/coco.names ../../../data/
 
 # Generate Label files
 cd ../../../tool
-python preprocess_cooc.py
+python preprocess_coco.py
 
 # Start training
 # cd ../src/
