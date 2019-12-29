@@ -103,7 +103,7 @@ Trained models were provided in Google Drive. To use the model trained on PASCAL
 Two trained models were provided below for both PASCAL-VOC 2007 + 2012 and COCO. Model for PASCAL-VOC was trained for around an entire day on one single __AMD RADEON VII__ GPU, and model for COCO 2017 was trained on one signle __NVIDIA RTX 2080Ti__ GPU.
 
 * Model on PASCAL-VOC 2007 and 2012 for 100 epochs: [here](https://drive.google.com/drive/folders/1JxkL6rAFiH_MAmWPon3pc1w_PJXzEN9f?usp=sharing)
-* Model on COCO 2017 for 78 epochs: [here](https://drive.google.com/drive/folders/1A_eYcfKRMGKDvSPODJ3TSCWjjC4thghg?usp=sharing)
+* Model on COCO 2017 for 315 epochs: [here](https://drive.google.com/drive/folders/1A_eYcfKRMGKDvSPODJ3TSCWjjC4thghg?usp=sharing)
 
 
 
