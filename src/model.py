@@ -163,8 +163,3 @@ class Model(tf.keras.Model):
         p_hat   = tf.gather(labels, indices=idx, axis=3)
         loss    = tf.reduce_sum(tf.math.square(p - p_hat))
         return loss
-
-    def accuracy(self, logits, labels):
-        # TODO: Add evaluation of accuracy
-
-        pass
