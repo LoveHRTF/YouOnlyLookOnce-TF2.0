@@ -133,12 +133,19 @@ class Model(tf.keras.Model):
         """
         # Localization Loss
         coord_scale = cfg.common_params['coord_scale']
-        xy      = tf.gather(logits, indices=[0,1,5,6], axis=3)
-        xy_hat  = tf.gather(labels, indices=[0,1,5,6], axis=3)
-        wh      = tf.gather(logits, indices=[2,3,7,8], axis=3)
-        wh_hat  = tf.gather(labels, indices=[2,3,7,8], axis=3)
-        loss    = coord_scale * tf.reduce_sum(tf.math.square(xy - xy_hat)) + \
-                  coord_scale * tf.reduce_sum(tf.math.square(wh - wh_hat))
+        obj     = tf.gather(labels, indices=[4, 9], axis=3)
+        x       = tf.gather(logits, indices=[0, 5], axis=3)
+        y       = tf.gather(logits, indices=[1, 6], axis=3)
+        x_hat   = tf.gather(labels, indices=[0, 5], axis=3)
+        y_hat   = tf.gather(labels, indices=[1, 6], axis=3)
+        w       = tf.gather(logits, indices=[2, 7], axis=3)
+        h       = tf.gather(logits, indices=[3, 8], axis=3)
+        w_hat   = tf.gather(labels, indices=[2, 7], axis=3)
+        h_hat   = tf.gather(labels, indices=[3, 8], axis=3)
+        xy_loss = tf.math.square(x - x_hat) + tf.math.square(y - y_hat)
+        wh_loss = tf.math.square(w - w_hat) + tf.math.square(h - h_hat)
+        loss    = coord_scale * tf.reduce_sum(tf.math.multiply(obj, xy_loss)) + \
+                  coord_scale * tf.reduce_sum(tf.math.multiply(obj, wh_loss))
         return loss
 
     def confidenceloss(self, logits, labels):
@@ -147,8 +154,25 @@ class Model(tf.keras.Model):
         """
         # Confidence Loss
         # noobject_scale = cfg.common_params['noobject_scale']    # not used
-        c       = tf.gather(logits, indices=[4,9], axis=3)
+        p       = tf.gather(logits, indices=[4,9], axis=3)
         c_hat   = tf.gather(labels, indices=[4,9], axis=3)
+        x       = tf.gather(logits, indices=[0, 5], axis=3)
+        y       = tf.gather(logits, indices=[1, 6], axis=3)
+        x_hat   = tf.gather(labels, indices=[0, 5], axis=3)
+        y_hat   = tf.gather(labels, indices=[1, 6], axis=3)
+        w       = tf.gather(logits, indices=[2, 7], axis=3)
+        h       = tf.gather(logits, indices=[3, 8], axis=3)
+        w_hat   = tf.gather(labels, indices=[2, 7], axis=3)
+        h_hat   = tf.gather(labels, indices=[3, 8], axis=3)
+        # calculate IOU
+        area_sum= w * h + w_hat * h_hat
+        w_sub   = tf.minimum(x + w / 2, x_hat + w_hat / 2) - tf.maximum(x - w / 2, x_hat - w_hat / 2)
+        h_sub   = tf.minimum(y + h / 2, y_hat + h_hat / 2) - tf.maximum(y - h / 2, y_hat - h_hat / 2)
+        w_sub   = tf.where(w_sub < 0, x=0, y=w_sub)
+        h_sub   = tf.where(h_sub < 0, x=0, y=h_sub)
+        area_sub= w_sub * h_sub
+        iou     = area_sub / (area_sum - area_sub)
+        c       = p * iou
         one     = (c_hat + 1.) / 2.   # confidence -> noobject scale (1->1, 0->0.5)
         loss    = tf.reduce_sum(tf.multiply(tf.square(c - c_hat), one))
         return loss
@@ -158,8 +182,11 @@ class Model(tf.keras.Model):
         Return: Class prob loss. Tensor of shape [1,]
         """
         # Classification Loss
-        idx     = tf.range(start=10, limit=90, delta=1)
-        p       = tf.gather(logits, indices=idx, axis=3)
-        p_hat   = tf.gather(labels, indices=idx, axis=3)
-        loss    = tf.reduce_sum(tf.math.square(p - p_hat))
+        obj      = tf.gather(labels, indices=[4,9], axis=3)
+        obj      = tf.cast(tf.cast(tf.reduce_sum(obj, axis=3), tf.bool), tf.float32)
+        idx      = tf.range(start=10, limit=30, delta=1)
+        p        = tf.gather(logits, indices=idx, axis=3)
+        p_hat    = tf.gather(labels, indices=idx, axis=3)
+        cls_loss = tf.reduce_sum(tf.math.square(p - p_hat), axis=3)
+        loss     = tf.reduce_sum(tf.math.multiply(obj, cls_loss))
         return loss
