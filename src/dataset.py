@@ -80,6 +80,7 @@ class Dataset(object):
         target = np.zeros((self.grid_num, self.grid_num, 10 + num_classes))
         cell_size = 1. / self.grid_num
         wh = (boxes[:, 2:] - boxes[:, 0:2])
+        wh = np.sqrt(wh)
         cxcy = (boxes[:, 2:] + boxes[:, 0:2]) / 2
 
         for i in range(cxcy.shape[0]):
